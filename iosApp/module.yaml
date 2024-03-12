@@ -1,0 +1,8 @@
+product: ios/app
+
+dependencies:
+    - ../shared
+
+settings:
+    ios:
+        teamId: <team ID>

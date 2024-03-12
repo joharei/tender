@@ -1,4 +1,3 @@
-.fleet
 *.iml
 .gradle
 **/build/
