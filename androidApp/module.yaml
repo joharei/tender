@@ -1,21 +1,21 @@
 product: android/app
 
 apply:
-    - ../common.module-template.yaml
-    
+	- ../common.module-template.yaml
+
 dependencies:
-    - ../shared
-    - $compose.runtime
-    - $compose.foundation
-    - $compose.material3
-    - $compose.ui
-    - $compose.preview
-    - $libs.androidx.compose.ui.tooling.preview
-    - $libs.androidx.activity.compose
+	- ../data/network
+	- $compose.runtime
+	- $compose.foundation
+	- $compose.material3
+	- $compose.ui
+	- $compose.preview
+	- $libs.androidx.compose.ui.tooling.preview
+	- $libs.androidx.activity.compose
 
 settings:
-    android: 
-        namespace: app.reitan.tender
-        applicationId: app.reitan.tender
-        
-    compose: enabled
+	android:
+		namespace: app.reitan.tender
+		applicationId: app.reitan.tender
+
+	compose: enabled

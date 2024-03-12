@@ -1,0 +1,10 @@
+product:
+	type: lib
+	platforms:
+		- jvm
+		- iosX64
+		- iosArm64
+		- iosSimulatorArm64
+
+apply:
+	- ../../common.module-template.yaml

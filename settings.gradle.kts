@@ -34,4 +34,4 @@ refreshVersions {
 }
 
 include(":androidApp")
-include(":shared")
+include(":data:network")
