@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 rootProject.name = "Tender"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
@@ -14,7 +16,9 @@ pluginManagement {
 }
 
 plugins {
-    id("org.jetbrains.amper.settings.plugin").version("0.2.1-dev-472")
+    id("org.jetbrains.amper.settings.plugin").version("0.2.2")
+////                                      # available:"0.2.3-dev-473")
+    id("de.fayard.refreshVersions") version "0.60.5"
 }
 
 dependencyResolutionManagement {
@@ -23,6 +27,10 @@ dependencyResolutionManagement {
         mavenCentral()
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
+}
+
+refreshVersions {
+    rejectVersionIf { candidate.stabilityLevel.isLessStableThan(current.stabilityLevel) }
 }
 
 include(":androidApp")
