@@ -7,13 +7,18 @@ dependencies:
 	- ../domain
 	- ../data/network
 	- $libs.koin.core
+	- $libs.koin.annotations
+	- $libs.koin.android
+	- $libs.koin.androidx.compose
+	- $libs.kotlinx.datetime
 	- $compose.runtime
 	- $compose.foundation
 	- $compose.material3
 	- $compose.ui
 	- $compose.preview
-	- $libs.androidx.compose.ui.tooling.preview
 	- $libs.androidx.activity.compose
+	- $libs.lifecycle.runtime.compose
+	- $libs.lifecycle.viewmodel.compose
 
 test-dependencies:
 	- $libs.koin.test

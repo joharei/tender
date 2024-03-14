@@ -32,7 +32,6 @@ afterEvaluate {
 	tasks.filter {
 		it.name.contains("SourcesJar", true)
 	}.forEach {
-		println("SourceJarTask====>${it.name}")
 		it.dependsOn("kspCommonMainKotlinMetadata")
 	}
 }
