@@ -1,0 +1,20 @@
+product:
+	type: lib
+	platforms:
+		- jvm
+		- iosX64
+		- iosArm64
+		- iosSimulatorArm64
+
+apply:
+	- ../common.module-template.yaml
+
+dependencies:
+	- $libs.kotlinx.coroutines.core
+	- $libs.kotlinx.datetime
+	- $libs.koin.core
+	- $libs.koin.annotations
+
+test-dependencies:
+	- $libs.kotlinx.coroutines.test
+	- $libs.mockative

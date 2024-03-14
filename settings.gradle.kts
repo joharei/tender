@@ -32,6 +32,3 @@ dependencyResolutionManagement {
 refreshVersions {
     rejectVersionIf { candidate.stabilityLevel.isLessStableThan(current.stabilityLevel) }
 }
-
-include(":androidApp")
-include(":data:network")

@@ -4,7 +4,9 @@ apply:
 	- ../common.module-template.yaml
 
 dependencies:
+	- ../domain
 	- ../data/network
+	- $libs.koin.core
 	- $compose.runtime
 	- $compose.foundation
 	- $compose.material3
@@ -12,6 +14,9 @@ dependencies:
 	- $compose.preview
 	- $libs.androidx.compose.ui.tooling.preview
 	- $libs.androidx.activity.compose
+
+test-dependencies:
+	- $libs.koin.test
 
 settings:
 	android:
