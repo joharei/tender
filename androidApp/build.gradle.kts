@@ -1,6 +1,5 @@
-import com.google.devtools.ksp.gradle.KspTaskMetadata
 import org.gradle.configurationcache.extensions.capitalized
-import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 plugins {
 	alias(libs.plugins.ksp)
@@ -27,13 +26,11 @@ android {
 	}
 
 	dependencies {
-		implementation(platform(libs.androidx.compose.bom))
-		debugImplementation(libs.androidx.compose.ui.tooling.preview)
 		add("kspAndroid", libs.koin.ksp)
 	}
 }
 
-tasks.withType<KotlinCompile<*>>().configureEach {
+tasks.withType<KotlinCompilationTask<*>>().configureEach {
 	val buildType = if ("Debug" in name) "Debug" else "Release"
 	val kspTask = "ksp${buildType}KotlinAndroid"
 	if (name != kspTask) {

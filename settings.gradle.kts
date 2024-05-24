@@ -16,8 +16,9 @@ pluginManagement {
 }
 
 plugins {
-    id("org.jetbrains.amper.settings.plugin").version("0.2.2")
-////                                      # available:"0.2.3-dev-473")
+    id("org.jetbrains.amper.settings.plugin").version("0.3.0")
+////                                      # available:"0.3.1-dev-580")
+////                                      # available:"0.3.1-dev-581")
     id("de.fayard.refreshVersions") version "0.60.5"
 }
 
