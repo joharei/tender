@@ -1,11 +1,9 @@
-package app.reitan.tender.main.models
+package app.reitan.tender.addNew.models
 
 import kotlinx.datetime.LocalDate
 
 data class MainUiState(
-	val lat: String = "",
-	val lon: String = "",
+	val location: LatLon? = null,
 	val startDate: LocalDate? = null,
-	val endDate: LocalDate? = null,
 	val calculated24HoursDegrees: Double? = null,
 )

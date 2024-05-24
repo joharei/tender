@@ -14,11 +14,14 @@ dependencies:
 	- $compose.runtime
 	- $compose.foundation
 	- $compose.material3
+	- $compose.materialIconsExtended
 	- $compose.ui
 	- $compose.preview
 	- $libs.androidx.activity.compose
 	- $libs.lifecycle.runtime.compose
 	- $libs.lifecycle.viewmodel.compose
+	- $libs.navigation.compose
+	- $libs.accompanist.permissions
 
 test-dependencies:
 	- $libs.koin.test
