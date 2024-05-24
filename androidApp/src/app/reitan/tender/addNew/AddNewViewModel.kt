@@ -17,14 +17,16 @@ class AddNewViewModel(
 	private val location = MutableStateFlow<LatLon?>(LatLon(62.3964924, 6.5987279))
 	private val startDate = MutableStateFlow<LocalDate?>(null)
 
-	private val inputFields = MutableStateFlow<InputFields?>(null)
-	private val calculated24HoursDegrees =
-		inputFields
-			.map {
-				it?.let {
-					calculate24HoursDegreesUseCase(lat = it.location.lat, lon = it.location.lon, startDate = it.startDate)
-				}
-			}
+	private val inputFields = combineTransform(location, startDate) { location, startDate ->
+		if (location != null && startDate != null) {
+			emit(InputFields(location = location, startDate = startDate))
+		}
+	}
+	private val calculated24HoursDegrees = inputFields
+		.map {
+			calculate24HoursDegreesUseCase(lat = it.location.lat, lon = it.location.lon, startDate = it.startDate)
+		}
+		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
 
 	val uiState: StateFlow<MainUiState> =
 		combine(
@@ -46,13 +48,5 @@ class AddNewViewModel(
 
 	fun setStartDate(startDate: LocalDate) {
 		this.startDate.value = startDate
-	}
-	
-	fun calculate() {
-		val location = this.location.value
-		val startDate = this.startDate.value
-		if (location != null && startDate != null) {
-			inputFields.value = InputFields(location = location, startDate = startDate)
-		}
 	}
 }

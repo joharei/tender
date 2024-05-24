@@ -18,7 +18,6 @@ fun NavGraphBuilder.addNewScreen(
 			onNavigateUp = onNavigateUp,
 			onNavigateToMap = onNavigateToMap,
 			onSetStartDate = viewModel::setStartDate,
-			onCalculate = viewModel::calculate,
 		)
 	}
 }
