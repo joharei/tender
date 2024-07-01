@@ -1,4 +1,4 @@
-package app.reitan.tender
+package shared
 
 import domain.DomainModule
 import network.NetworkModule

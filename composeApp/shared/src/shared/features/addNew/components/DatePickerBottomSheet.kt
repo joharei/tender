@@ -1,4 +1,4 @@
-package app.reitan.tender.addNew.components
+package shared.features.addNew.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row

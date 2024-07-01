@@ -1,12 +1,12 @@
-package app.reitan.tender
+package shared
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import app.reitan.tender.addNew.ADD_NEW_ROUTE
-import app.reitan.tender.addNew.addNewScreen
-import app.reitan.tender.map.mapScreen
-import app.reitan.tender.map.navigateToMapScreen
+import shared.features.addNew.ADD_NEW_ROUTE
+import shared.features.addNew.addNewScreen
+import shared.features.map.mapScreen
+import shared.features.map.navigateToMapScreen
 
 @Composable
 fun AppNavGraph(navController: NavHostController) {

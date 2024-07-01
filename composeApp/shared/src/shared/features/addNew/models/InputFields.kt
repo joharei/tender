@@ -1,4 +1,4 @@
-package app.reitan.tender.addNew.models
+package shared.features.addNew.models
 
 import kotlinx.datetime.LocalDate
 

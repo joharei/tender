@@ -1,4 +1,4 @@
-import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 plugins {
 	kotlin("multiplatform")
@@ -22,7 +22,7 @@ dependencies {
 }
 
 // WORKAROUND: ADD this dependsOn("kspCommonMainKotlinMetadata") instead of above dependencies
-tasks.withType<KotlinCompile<*>>().configureEach {
+tasks.withType<KotlinCompilationTask<*>>().configureEach {
 	if (name != "kspCommonMainKotlinMetadata") {
 		dependsOn("kspCommonMainKotlinMetadata")
 	}

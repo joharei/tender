@@ -1,4 +1,4 @@
-package app.reitan.tender.addNew
+package shared.features.addNew
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
@@ -12,9 +12,10 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import app.reitan.tender.addNew.components.DatePickerBottomSheet
-import app.reitan.tender.addNew.models.MainUiState
 import kotlinx.datetime.LocalDate
+import org.jetbrains.compose.ui.tooling.preview.Preview
+import shared.features.addNew.components.DatePickerBottomSheet
+import shared.features.addNew.models.MainUiState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -72,5 +73,18 @@ fun AddNewScreen(
 				)
 			}
 		}
+	}
+}
+
+@Preview
+@Composable
+private fun PreviewAddNewScreen() {
+	MaterialTheme {
+		AddNewScreen(
+			uiState = MainUiState(),
+			onNavigateUp = {},
+			onNavigateToMap = {},
+			onSetStartDate = {},
+		)
 	}
 }

@@ -1,0 +1,12 @@
+product: jvm/app
+
+dependencies:
+	- ../shared
+	- $compose.foundation
+	- $compose.material3
+	- $compose.desktop.currentOs
+
+settings:
+	compose:
+		enabled: true
+		version: 1.6.10

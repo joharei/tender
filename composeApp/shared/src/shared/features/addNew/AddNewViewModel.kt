@@ -1,16 +1,14 @@
-package app.reitan.tender.addNew
+package shared.features.addNew
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import app.reitan.tender.addNew.models.InputFields
-import app.reitan.tender.addNew.models.LatLon
-import app.reitan.tender.addNew.models.MainUiState
+import shared.features.addNew.models.InputFields
+import shared.features.addNew.models.LatLon
+import shared.features.addNew.models.MainUiState
 import domain.Calculate24HoursDegreesUseCase
 import kotlinx.coroutines.flow.*
 import kotlinx.datetime.LocalDate
-import org.koin.android.annotation.KoinViewModel
 
-@KoinViewModel
 class AddNewViewModel(
 	private val calculate24HoursDegreesUseCase: Calculate24HoursDegreesUseCase,
 ) : ViewModel() {

@@ -1,4 +1,4 @@
-package app.reitan.tender.map
+package shared.features.map
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

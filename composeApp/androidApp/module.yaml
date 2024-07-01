@@ -1,0 +1,24 @@
+product: android/app
+
+apply:
+	- ../../common.module-template.yaml
+
+dependencies:
+	- ../shared
+	- $compose.foundation
+	- $compose.runtime
+	- $compose.ui
+	- $libs.koin.androidx.compose
+	- $libs.androidx.activity.compose
+
+test-dependencies:
+	- $libs.koin.test
+
+settings:
+	android:
+		namespace: app.reitan.tender
+		applicationId: app.reitan.tender
+	
+	compose:
+	 enabled: true
+	 version: 1.6.10
