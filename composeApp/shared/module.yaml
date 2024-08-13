@@ -4,6 +4,7 @@ product:
 	
 apply:
 	- ../../common.module-template.yaml
+	- ../common.compose-template.yaml
 
 dependencies:
 	- ../../domain
@@ -27,8 +28,3 @@ dependencies:
 dependencies@jvm:
 	- $compose.preview
 	- $libs.kotlinx.coroutines.swing
-
-settings:
- compose:
-	 enabled: true
-	 version: 1.6.10

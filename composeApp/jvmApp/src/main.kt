@@ -1,9 +1,11 @@
-import androidx.compose.ui.window.Window
-import androidx.compose.ui.window.application
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.WindowState
+import androidx.compose.ui.window.singleWindowApplication
 import shared.App
 
-fun main() = application {
-	Window(title = "Tender", onCloseRequest = ::exitApplication) {
-		App()
-	}
+fun main() = singleWindowApplication(
+	title = "Tender",
+	state = WindowState(width = 1000.dp, height = 800.dp),
+) {
+	App()
 }

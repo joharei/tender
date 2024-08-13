@@ -2,6 +2,7 @@ product: android/app
 
 apply:
 	- ../../common.module-template.yaml
+	- ../common.compose-template.yaml
 
 dependencies:
 	- ../shared
@@ -18,7 +19,3 @@ settings:
 	android:
 		namespace: app.reitan.tender
 		applicationId: app.reitan.tender
-	
-	compose:
-	 enabled: true
-	 version: 1.6.10
