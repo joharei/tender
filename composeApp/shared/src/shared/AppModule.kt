@@ -1,10 +1,13 @@
 package shared
 
-import domain.DomainModule
-import network.NetworkModule
-import org.koin.core.annotation.ComponentScan
-import org.koin.core.annotation.Module
+import domain.domainModule
+import network.networkModule
+import org.koin.compose.viewmodel.dsl.viewModel
+import org.koin.dsl.module
+import shared.features.addNew.AddNewViewModel
 
-@Module(includes = [DomainModule::class, NetworkModule::class])
-@ComponentScan
-class AppModule
+internal val appModule = module {
+	includes(domainModule, networkModule)
+
+	viewModel { AddNewViewModel(get()) }
+}

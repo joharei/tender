@@ -20,7 +20,6 @@ dependencies:
 	- $libs.ktor.serialization.kotlinx.json
 	- $libs.napier
 	- $libs.koin.core
-	- $libs.koin.annotations
 
 test-dependencies:
 	- $libs.kotlinx.coroutines.test

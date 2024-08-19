@@ -6,20 +6,21 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 [versions]
 
-ksp = "2.0.0-1.0.22"
-androidx-activity-compose = "1.9.0"
+ksp = "2.0.0-1.0.24"
+##⬆= "2.0.10-1.0.24"
+androidx-activity-compose = "1.9.1"
 androidx-core-ktx = "1.13.1"
 androidx-test-junit = "1.1.5"
+androidx-navigation = "2.8.0-beta05"
 lifecycle = "2.8.0"
-navigation = "2.7.0-alpha07"
-accompanist = "0.34.0"
+navigation = "2.8.0-alpha08"
+accompanist = "0.35.1-alpha"
 junit = "4.13.2"
 coroutines = "1.8.1"
 ktor = "2.3.12"
 kotlinx-datetime = "0.6.0"
 napier = "2.7.1"
-koin = "3.6.0-Beta4"
-koin-ksp = "1.3.1"
+koin = "4.0.0-RC1"
 mockative = "2.2.2"
 
 [libraries]
@@ -34,6 +35,7 @@ accompanist-permissions = { module = "com.google.accompanist:accompanist-permiss
 lifecycle-runtime-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
 lifecycle-viewmodel-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigation" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
 
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
@@ -47,12 +49,9 @@ ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negoti
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 napier = { module = "io.github.aakira:napier", version.ref = "napier" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
-koin-compose = { module = "io.insert-koin:koin-compose", version = "1.2.0-Beta4" }
-koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version = "1.2.0-Beta4" }
-koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
-koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
+koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
+koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
-koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koin-ksp" }
-koin-ksp = { module = "io.insert-koin:koin-ksp-compiler", version.ref = "koin-ksp" }
+koin-test-junit4 = { module = "io.insert-koin:koin-test-junit4", version.ref = "koin" }
 mockative = { module = "io.mockative:mockative", version.ref = "mockative" }
 mockative-processor = { module = "io.mockative:mockative-processor", version.ref = "mockative" }

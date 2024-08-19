@@ -10,6 +10,26 @@
 			"initScripts": {
 				"flmapper": "ext.mapPath = { path -> null }"
 			}
+		},
+		{
+			"name": "Tender [refreshVersions]",
+			"type": "gradle",
+			"workingDir": "$PROJECT_DIR$",
+			"tasks": ["refreshVersions"],
+			"args": [""],
+			"initScripts": {
+				"flmapper": "ext.mapPath = { path -> path }"
+			}
+		},
+		{
+			"name": "CheckModulesTest (1)",
+			"type": "gradle",
+			"workingDir": "$PROJECT_DIR$",
+			"tasks": [":composeApp:shared:cleanTestDebugUnitTest", ":composeApp:shared:testDebugUnitTest", "--tests", "\"CheckModulesTest\""],
+			"args": [""],
+			"initScripts": {
+				"flmapper": "ext.mapPath = { path -> path }"
+			}
 		}
 	]
 }

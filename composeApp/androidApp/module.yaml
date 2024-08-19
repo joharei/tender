@@ -9,11 +9,7 @@ dependencies:
 	- $compose.foundation
 	- $compose.runtime
 	- $compose.ui
-	- $libs.koin.androidx.compose
 	- $libs.androidx.activity.compose
-
-test-dependencies:
-	- $libs.koin.test
 
 settings:
 	android:

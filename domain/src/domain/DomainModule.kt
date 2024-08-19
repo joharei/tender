@@ -1,8 +1,7 @@
 package domain
 
-import org.koin.core.annotation.ComponentScan
-import org.koin.core.annotation.Module
+import org.koin.dsl.module
 
-@Module
-@ComponentScan
-class DomainModule
+val domainModule = module {
+	factory { Calculate24HoursDegreesUseCase(get()) }
+}

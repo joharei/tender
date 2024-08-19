@@ -10,7 +10,7 @@ fun App() {
 	val navController = rememberNavController()
 
 	KoinApplication(application = {
-		modules(sharedModule())
+		modules(appModule)
 	}) {
 		MaterialTheme {
 			AppNavGraph(navController)

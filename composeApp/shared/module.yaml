@@ -10,7 +10,6 @@ dependencies:
 	- ../../domain
 	- ../../data/network
 	- $libs.koin.core
-	- $libs.koin.annotations
 	- $libs.koin.compose
 	- $libs.koin.compose.viewmodel
 	- $libs.kotlinx.datetime
@@ -25,6 +24,14 @@ dependencies:
 	- $libs.lifecycle.viewmodel.compose
 	- $libs.navigation.compose
 
+test-dependencies:
+	- $libs.ktor.client.core
+	- $libs.koin.test
+	- $libs.koin.test.junit4
+
 dependencies@jvm:
 	- $compose.preview
 	- $libs.kotlinx.coroutines.swing
+
+dependencies@android:
+	- $libs.androidx.navigation.compose

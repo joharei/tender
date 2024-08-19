@@ -5,9 +5,7 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 import kotlinx.datetime.LocalDate
 import network.models.Forecast
-import org.koin.core.annotation.Factory
 
-@Factory
 internal class OpenMeteoApi(private val httpClient: HttpClient) {
 	suspend fun getForecast(lat: Double, lon: Double, startDate: LocalDate, endDate: LocalDate): Forecast {
 		return httpClient

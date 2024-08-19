@@ -1,10 +1,11 @@
 package domain
 
 import domain.repositories.ForecastRepository
-import kotlinx.datetime.*
-import org.koin.core.annotation.Factory
+import kotlinx.datetime.Clock
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 
-@Factory
 class Calculate24HoursDegreesUseCase(private val forecastRepository: ForecastRepository) {
 	suspend operator fun invoke(lat: Double, lon: Double, startDate: LocalDate): Double {
 		val forecast = forecastRepository.getForecast(
