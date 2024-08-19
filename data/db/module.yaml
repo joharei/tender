@@ -1,0 +1,28 @@
+product:
+	type: lib
+	platforms:
+		- jvm
+		- android
+		- iosX64
+		- iosArm64
+		- iosSimulatorArm64
+
+apply:
+	- ../../common.module-template.yaml
+
+dependencies:
+	- ../../domain
+	- $libs.kotlinx.coroutines.core
+	- $libs.kotlinx.datetime
+	- $libs.koin.core
+	- $libs.sqldelight.runtime
+	- $libs.sqldelight.coroutines
+
+dependencies@jvm:
+	- $libs.sqldelight.jvm.driver
+
+dependencies@android:
+	- $libs.sqldelight.android.driver
+
+dependencies@ios:
+	- $libs.sqldelight.native.driver

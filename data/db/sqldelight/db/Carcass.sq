@@ -1,0 +1,14 @@
+CREATE TABLE carcass (
+	carcass_id INTEGER PRIMARY KEY,
+	start_date TEXT NOT NULL,
+	location_lat REAL NOT NULL,
+	location_lon REAL NOT NULL
+);
+
+selectAll:
+SELECT *
+FROM carcass;
+
+insert:
+INSERT INTO carcass(start_date, location_lat, location_lon)
+VALUES (?, ?, ?);

@@ -8,6 +8,7 @@ apply:
 
 dependencies:
 	- ../../domain
+	- ../../data/db
 	- ../../data/network
 	- $libs.koin.core
 	- $libs.koin.compose
