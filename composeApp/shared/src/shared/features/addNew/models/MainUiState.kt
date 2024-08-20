@@ -1,7 +1,6 @@
 package shared.features.addNew.models
 
 import kotlinx.datetime.LocalDate
-import shared.features.addNew.models.LatLon
 
 data class MainUiState(
 	val location: LatLon? = null,

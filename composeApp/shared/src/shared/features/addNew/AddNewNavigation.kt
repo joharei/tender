@@ -1,15 +1,16 @@
 package shared.features.addNew
 
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import org.koin.compose.viewmodel.koinNavViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
 
-internal const val ADD_NEW_ROUTE = "add_new"
+private const val ADD_NEW_ROUTE = "add_new"
 
 @OptIn(KoinExperimentalAPI::class)
-fun NavGraphBuilder.addNewScreen(
+internal fun NavGraphBuilder.addNewScreen(
 	onNavigateUp: () -> Unit,
 	onNavigateToMap: () -> Unit,
 ) {
@@ -23,3 +24,5 @@ fun NavGraphBuilder.addNewScreen(
 		)
 	}
 }
+
+internal fun NavController.navigateToAddNewScreen() = navigate(ADD_NEW_ROUTE)

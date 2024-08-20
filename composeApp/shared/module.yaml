@@ -21,6 +21,7 @@ dependencies:
 	- $compose.ui
 	- $compose.uiTooling
 	- $compose.preview
+	- $compose.desktop.components.splitPane
 	- $libs.lifecycle.runtime.compose
 	- $libs.lifecycle.viewmodel.compose
 	- $libs.navigation.compose

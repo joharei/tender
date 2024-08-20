@@ -21,6 +21,7 @@ class CarcassRepositoryImpl(private val carcassQueries: CarcassQueries) : Carcas
 				carcasses.map {
 					Carcass(
 						id = it.carcass_id,
+						name = it.name,
 						startDate = Instant.parse(it.start_date),
 						location = LatLon(lat = it.location_lat, lon = it.location_lon),
 					)
@@ -30,6 +31,7 @@ class CarcassRepositoryImpl(private val carcassQueries: CarcassQueries) : Carcas
 
 	override suspend fun addCarcass(carcass: Carcass) = withContext(Dispatchers.IO) {
 		carcassQueries.insert(
+			name = carcass.name,
 			start_date = carcass.startDate.toString(),
 			location_lat = carcass.location.lat,
 			location_lon = carcass.location.lon,

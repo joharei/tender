@@ -1,13 +1,15 @@
 package db
 
 import db.di.driverFactoryModule
-import org.koin.core.module.dsl.singleOf
+import domain.repositories.CarcassRepository
+import org.koin.core.module.dsl.factoryOf
+import org.koin.dsl.bind
 import org.koin.dsl.module
 
 val dbModule = module {
 	includes(driverFactoryModule)
-
 	single { createDatabase(get()) }
-	
-	singleOf(::CarcassRepositoryImpl)
+	single { get<Database>().carcassQueries }
+
+	factoryOf(::CarcassRepositoryImpl) bind CarcassRepository::class
 }

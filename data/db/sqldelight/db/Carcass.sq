@@ -1,5 +1,6 @@
 CREATE TABLE carcass (
 	carcass_id INTEGER PRIMARY KEY,
+	name TEXT NOT NULL,
 	start_date TEXT NOT NULL,
 	location_lat REAL NOT NULL,
 	location_lon REAL NOT NULL
@@ -10,5 +11,5 @@ SELECT *
 FROM carcass;
 
 insert:
-INSERT INTO carcass(start_date, location_lat, location_lon)
-VALUES (?, ?, ?);
+INSERT INTO carcass(name, start_date, location_lat, location_lon)
+VALUES (?, ?, ?, ?);

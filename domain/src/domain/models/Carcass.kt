@@ -4,6 +4,7 @@ import kotlinx.datetime.Instant
 
 data class Carcass(
 	val id: Long,
+	val name: String,
 	val startDate: Instant,
 	val location: LatLon,
 )
