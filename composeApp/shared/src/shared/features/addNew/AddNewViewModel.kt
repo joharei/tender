@@ -2,49 +2,81 @@ package shared.features.addNew
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import shared.features.addNew.models.InputFields
-import shared.features.addNew.models.LatLon
-import shared.features.addNew.models.MainUiState
-import domain.Calculate24HoursDegreesUseCase
+import domain.AddCarcassUseCase
+import domain.models.LatLon
 import kotlinx.coroutines.flow.*
-import kotlinx.datetime.LocalDate
+import kotlinx.coroutines.launch
+import kotlinx.datetime.*
+import shared.features.addNew.models.AddNewUiEvent
+import shared.features.addNew.models.AddNewUiState
+import shared.utils.combine
 
 class AddNewViewModel(
-	private val calculate24HoursDegreesUseCase: Calculate24HoursDegreesUseCase,
+	private val addCarcassUseCase: AddCarcassUseCase,
 ) : ViewModel() {
-	private val location = MutableStateFlow<LatLon?>(LatLon(62.3964924, 6.5987279))
+	private val name = MutableStateFlow<String?>(null)
+	private val lat = MutableStateFlow<String?>("62.3964924")
+	private val lon = MutableStateFlow<String?>("6.5987279")
 	private val startDate = MutableStateFlow<LocalDate?>(null)
+	private val startTime = MutableStateFlow<LocalTime?>(null)
+	private val saveCompleted = MutableStateFlow(false)
+	private val latError = lat.map { it != null && it.toDoubleOrNull() == null }
+		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), false)
+	private val lonError = lon.map { it != null && it.toDoubleOrNull() == null }
+		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), false)
 
-	private val inputFields = combineTransform(location, startDate) { location, startDate ->
-		if (location != null && startDate != null) {
-			emit(InputFields(location = location, startDate = startDate))
-		}
-	}
-	private val calculated24HoursDegrees = inputFields
-		.map {
-			calculate24HoursDegreesUseCase(lat = it.location.lat, lon = it.location.lon, startDate = it.startDate)
-		}
-		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
-
-	val uiState: StateFlow<MainUiState> =
+	val uiState: StateFlow<AddNewUiState> =
 		combine(
-			location,
+			name,
+			lat,
+			latError,
+			lon,
+			lonError,
 			startDate,
-			calculated24HoursDegrees,
-		) { location, startDate, calculated24HoursDegrees ->
-			MainUiState(
-				location = location,
+			startTime,
+			saveCompleted,
+		) { name, lat, latError, lon, lonError, startDate, startTime, saveCompleted ->
+			AddNewUiState(
+				name = name,
+				lat = lat,
+				latError = latError,
+				lon = lon,
+				lonError = lonError,
 				startDate = startDate,
-				calculated24HoursDegrees = calculated24HoursDegrees,
+				startTime = startTime,
+				saveButtonEnabled = name != null && lat != null && !latError && lon != null && !lonError && startDate != null && startTime != null,
+				saveCompleted = saveCompleted,
 			)
 		}
-			.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), MainUiState())
+			.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), AddNewUiState())
 
-	fun setLocation(location: LatLon) {
-		this.location.value = location
+	fun onUiEvent(event: AddNewUiEvent) {
+		when (event) {
+			is AddNewUiEvent.OnSetLat -> lat.value = event.lat
+			is AddNewUiEvent.OnSetLon -> lon.value = event.lon
+			is AddNewUiEvent.OnSetName -> name.value = event.name
+			is AddNewUiEvent.OnSetStartDate -> startDate.value = event.startDate
+			is AddNewUiEvent.OnSetStartTime -> startTime.value = event.startTime
+			AddNewUiEvent.OnSave -> save()
+		}
 	}
 
-	fun setStartDate(startDate: LocalDate) {
-		this.startDate.value = startDate
+	private fun save() {
+		if (latError.value || lonError.value) {
+			return
+		}
+		val name = this.name.value ?: return
+		val lat = this.lat.value?.toDoubleOrNull() ?: return
+		val lon = this.lon.value?.toDoubleOrNull() ?: return
+		val startDate = this.startDate.value ?: return
+		val startTime = this.startTime.value ?: return
+		viewModelScope.launch {
+			addCarcassUseCase(
+				name = name,
+				startDate = startDate.atTime(startTime).toInstant(TimeZone.currentSystemDefault()),
+				location = LatLon(lat = lat, lon = lon),
+			)
+		}
+		saveCompleted.value = true
 	}
 }

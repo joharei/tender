@@ -29,12 +29,12 @@ class CarcassRepositoryImpl(private val carcassQueries: CarcassQueries) : Carcas
 			}
 	}
 
-	override suspend fun addCarcass(carcass: Carcass) = withContext(Dispatchers.IO) {
+	override suspend fun addCarcass(name: String, startDate: Instant, location: LatLon) = withContext(Dispatchers.IO) {
 		carcassQueries.insert(
-			name = carcass.name,
-			start_date = carcass.startDate.toString(),
-			location_lat = carcass.location.lat,
-			location_lon = carcass.location.lon,
+			name = name,
+			start_date = startDate.toString(),
+			location_lat = location.lat,
+			location_lon = location.lon,
 		)
 	}
 

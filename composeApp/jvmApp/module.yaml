@@ -8,3 +8,4 @@ dependencies:
 	- $compose.foundation
 	- $compose.material3
 	- $compose.desktop.currentOs
+	- $libs.logback

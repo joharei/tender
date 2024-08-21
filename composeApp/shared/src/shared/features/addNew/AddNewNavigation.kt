@@ -19,8 +19,7 @@ internal fun NavGraphBuilder.addNewScreen(
 		AddNewScreen(
 			uiState = viewModel.uiState.collectAsStateWithLifecycle().value,
 			onNavigateUp = onNavigateUp,
-			onNavigateToMap = onNavigateToMap,
-			onSetStartDate = viewModel::setStartDate,
+			onUiEvent = viewModel::onUiEvent,
 		)
 	}
 }

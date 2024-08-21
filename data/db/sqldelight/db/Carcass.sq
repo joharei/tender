@@ -1,4 +1,4 @@
-CREATE TABLE carcass (
+CREATE TABLE IF NOT EXISTS carcass (
 	carcass_id INTEGER PRIMARY KEY,
 	name TEXT NOT NULL,
 	start_date TEXT NOT NULL,

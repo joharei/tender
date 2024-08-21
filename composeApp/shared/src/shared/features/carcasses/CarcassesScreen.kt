@@ -44,7 +44,7 @@ fun CarcassesScreen(
 					CircularProgressIndicator()
 				}
 			} else {
-				LazyColumn {
+				LazyColumn(contentPadding = contentPadding) {
 					items(uiState.carcasses) {
 						ListItem(headlineContent = { Text(it.name) })
 					}

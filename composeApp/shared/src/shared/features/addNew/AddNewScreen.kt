@@ -1,30 +1,38 @@
 package shared.features.addNew
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.automirrored.filled.ArrowRight
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import kotlinx.datetime.LocalDate
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.datetime.Instant
+import kotlinx.datetime.LocalTime
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import shared.features.addNew.components.DatePickerBottomSheet
-import shared.features.addNew.models.MainUiState
+import shared.features.addNew.components.TimePickerDialog
+import shared.features.addNew.models.AddNewUiEvent
+import shared.features.addNew.models.AddNewUiState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddNewScreen(
-	uiState: MainUiState,
+	uiState: AddNewUiState,
 	onNavigateUp: () -> Unit,
-	onNavigateToMap: () -> Unit,
-	onSetStartDate: (LocalDate) -> Unit,
+	onUiEvent: (AddNewUiEvent) -> Unit,
 ) {
+	LaunchedEffect(uiState) {
+		snapshotFlow { uiState.saveCompleted }
+			.collect {
+				if (it) {
+					onNavigateUp()
+				}
+			}
+	}
+
 	Scaffold(
 		topBar = {
 			TopAppBar(
@@ -38,39 +46,127 @@ fun AddNewScreen(
 		},
 	) { contentPadding ->
 		Column(
-			modifier = Modifier.padding(contentPadding),
+			modifier = Modifier
+				.padding(contentPadding)
+				.padding(horizontal = 16.dp, vertical = 24.dp),
 			verticalArrangement = Arrangement.spacedBy(16.dp),
 		) {
-			ListItem(
-				modifier = Modifier.clickable(onClick = onNavigateToMap),
-				headlineContent = { Text("Plassering") },
-				supportingContent = {
-					Text(uiState.location?.let { (lat, lon) -> "${"%.6f".format(lat)}, ${"%.6f".format(lon)}" }
-						?: "Velg plassering")
-				},
-				trailingContent = { Icon(Icons.AutoMirrored.Default.ArrowRight, contentDescription = null) },
+			OutlinedTextField(
+				value = uiState.name.orEmpty(),
+				onValueChange = { onUiEvent(AddNewUiEvent.OnSetName(it)) },
+				label = { Text("Navn") },
 			)
 
-			var datePickerOpen by remember { mutableStateOf(false) }
-			if (datePickerOpen) {
-				DatePickerBottomSheet(
-					initialSelectedDate = uiState.startDate,
-					onDismissRequest = { datePickerOpen = false },
-					onSetStartDate,
+			Row(
+				modifier = Modifier.fillMaxWidth(),
+				horizontalArrangement = Arrangement.spacedBy(16.dp),
+			) {
+				OutlinedTextField(
+					modifier = Modifier.weight(1f),
+					value = uiState.lat.orEmpty(),
+					onValueChange = { onUiEvent(AddNewUiEvent.OnSetLat(it)) },
+					label = { Text("Latitude") },
+				)
+				OutlinedTextField(
+					modifier = Modifier.weight(1f),
+					value = uiState.lon.orEmpty(),
+					onValueChange = { onUiEvent(AddNewUiEvent.OnSetLon(it)) },
+					label = { Text("Longitude") },
 				)
 			}
-			ListItem(
-				modifier = Modifier.clickable { datePickerOpen = true },
-				headlineContent = { Text("Start") },
-				supportingContent = { Text(uiState.startDate?.toString() ?: "Velg dato") },
-				trailingContent = { Icon(Icons.AutoMirrored.Default.ArrowRight, contentDescription = null) },
-			)
 
-			AnimatedVisibility(uiState.calculated24HoursDegrees != null) {
-				Text(
-					modifier = Modifier.padding(horizontal = 16.dp),
-					text = "Døgngrader: ${"%.0f".format(uiState.calculated24HoursDegrees)}",
-				)
+			Row(
+				modifier = Modifier.fillMaxWidth(),
+				horizontalArrangement = Arrangement.spacedBy(16.dp),
+			) {
+				var dateExpanded by remember { mutableStateOf(false) }
+				val datePickerState = rememberDatePickerState()
+				LaunchedEffect(datePickerState) {
+					snapshotFlow { datePickerState.selectedDateMillis }
+						.filterNotNull()
+						.collect {
+							onUiEvent(
+								AddNewUiEvent.OnSetStartDate(
+									Instant.fromEpochMilliseconds(it).toLocalDateTime(TimeZone.currentSystemDefault()).date
+								)
+							)
+						}
+				}
+				ExposedDropdownMenuBox(
+					modifier = Modifier.weight(1f),
+					expanded = dateExpanded,
+					onExpandedChange = { dateExpanded = it },
+				) {
+					OutlinedTextField(
+						modifier = Modifier
+							.fillMaxWidth()
+							.menuAnchor(MenuAnchorType.PrimaryNotEditable),
+						value = uiState.startDate?.toString().orEmpty(),
+						onValueChange = {},
+						readOnly = true,
+						singleLine = true,
+						label = { Text("Startdato") },
+						trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = dateExpanded) },
+						colors = ExposedDropdownMenuDefaults.outlinedTextFieldColors(),
+					)
+				}
+				if (dateExpanded) {
+					DatePickerDialog(
+						onDismissRequest = { dateExpanded = false },
+						confirmButton = { TextButton(onClick = { dateExpanded = false }) { Text("Ok") } },
+					) {
+						DatePicker(
+							state = datePickerState,
+						)
+					}
+				}
+
+				var timeExpanded by remember { mutableStateOf(false) }
+				val timePickerState = rememberTimePickerState()
+				val localTime by rememberUpdatedState(LocalTime(timePickerState.hour, timePickerState.minute))
+				LaunchedEffect(timePickerState) {
+					snapshotFlow { localTime }
+						.collect {
+							onUiEvent(AddNewUiEvent.OnSetStartTime(it))
+						}
+				}
+				ExposedDropdownMenuBox(
+					modifier = Modifier.weight(1f),
+					expanded = timeExpanded,
+					onExpandedChange = { timeExpanded = it },
+				) {
+					OutlinedTextField(
+						modifier = Modifier
+							.fillMaxWidth()
+							.menuAnchor(MenuAnchorType.PrimaryNotEditable),
+						value = uiState.startTime?.toString().orEmpty(),
+						onValueChange = {},
+						readOnly = true,
+						singleLine = true,
+						label = { Text("Starttid") },
+						trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = timeExpanded) },
+						colors = ExposedDropdownMenuDefaults.outlinedTextFieldColors(),
+					)
+				}
+				if (timeExpanded) {
+					TimePickerDialog(
+						onCancel = { timeExpanded = false },
+						onConfirm = { timeExpanded = false },
+						title = "Velg tid",
+					) {
+						TimePicker(
+							state = timePickerState,
+						)
+					}
+				}
+			}
+
+			Button(
+				modifier = Modifier.fillMaxWidth(),
+				onClick = { onUiEvent(AddNewUiEvent.OnSave) },
+				enabled = uiState.saveButtonEnabled,
+			) {
+				Text("Lagre")
 			}
 		}
 	}
@@ -81,10 +177,9 @@ fun AddNewScreen(
 private fun PreviewAddNewScreen() {
 	MaterialTheme {
 		AddNewScreen(
-			uiState = MainUiState(),
+			uiState = AddNewUiState(),
 			onNavigateUp = {},
-			onNavigateToMap = {},
-			onSetStartDate = {},
+			onUiEvent = {},
 		)
 	}
 }
