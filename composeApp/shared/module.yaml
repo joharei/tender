@@ -1,7 +1,7 @@
 product:
 	type: lib
 	platforms: [jvm, android]
-	
+
 apply:
 	- ../../common.module-template.yaml
 	- ../common.compose-template.yaml
@@ -21,7 +21,7 @@ dependencies:
 	- $compose.ui
 	- $compose.uiTooling
 	- $compose.preview
-	- $compose.desktop.components.splitPane
+	- $libs.material3.adaptive
 	- $libs.lifecycle.runtime.compose
 	- $libs.lifecycle.viewmodel.compose
 	- $libs.navigation.compose

@@ -14,7 +14,7 @@ import shared.features.map.navigateToMapScreen
 fun AppNavGraph(navController: NavHostController) {
 	NavHost(navController = navController, startDestination = CARCASSES_ROUTE) {
 		carcassesScreen(onNavigateToAddNew = navController::navigateToAddNewScreen)
-		addNewScreen(onNavigateUp = navController::navigateUp, onNavigateToMap = navController::navigateToMapScreen)
+		addNewScreen(onNavigateUp = navController::navigateUp)
 		mapScreen()
 	}
 }

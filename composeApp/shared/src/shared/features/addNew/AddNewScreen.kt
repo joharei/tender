@@ -21,6 +21,7 @@ import shared.features.addNew.models.AddNewUiState
 @Composable
 fun AddNewScreen(
 	uiState: AddNewUiState,
+	contentPadding: PaddingValues = PaddingValues(),
 	onNavigateUp: () -> Unit,
 	onUiEvent: (AddNewUiEvent) -> Unit,
 ) {
@@ -33,141 +34,129 @@ fun AddNewScreen(
 			}
 	}
 
-	Scaffold(
-		topBar = {
-			TopAppBar(
-				title = { Text("Legg til kjøtt") },
-				navigationIcon = {
-					IconButton(onClick = onNavigateUp) {
-						Icon(Icons.AutoMirrored.Default.ArrowBack, contentDescription = null)
-					}
-				}
-			)
-		},
-	) { contentPadding ->
-		Column(
-			modifier = Modifier
-				.padding(contentPadding)
-				.padding(horizontal = 16.dp, vertical = 24.dp),
-			verticalArrangement = Arrangement.spacedBy(16.dp),
+	Column(
+		modifier = Modifier
+			.padding(contentPadding)
+			.padding(horizontal = 16.dp, vertical = 24.dp),
+		verticalArrangement = Arrangement.spacedBy(16.dp),
+	) {
+		OutlinedTextField(
+			modifier = Modifier.fillMaxWidth(),
+			value = uiState.name.orEmpty(),
+			onValueChange = { onUiEvent(AddNewUiEvent.OnSetName(it)) },
+			label = { Text("Navn") },
+		)
+
+		Row(
+			modifier = Modifier.fillMaxWidth(),
+			horizontalArrangement = Arrangement.spacedBy(16.dp),
 		) {
 			OutlinedTextField(
-				value = uiState.name.orEmpty(),
-				onValueChange = { onUiEvent(AddNewUiEvent.OnSetName(it)) },
-				label = { Text("Navn") },
+				modifier = Modifier.weight(1f),
+				value = uiState.lat.orEmpty(),
+				onValueChange = { onUiEvent(AddNewUiEvent.OnSetLat(it)) },
+				label = { Text("Latitude") },
 			)
+			OutlinedTextField(
+				modifier = Modifier.weight(1f),
+				value = uiState.lon.orEmpty(),
+				onValueChange = { onUiEvent(AddNewUiEvent.OnSetLon(it)) },
+				label = { Text("Longitude") },
+			)
+		}
 
-			Row(
-				modifier = Modifier.fillMaxWidth(),
-				horizontalArrangement = Arrangement.spacedBy(16.dp),
-			) {
-				OutlinedTextField(
-					modifier = Modifier.weight(1f),
-					value = uiState.lat.orEmpty(),
-					onValueChange = { onUiEvent(AddNewUiEvent.OnSetLat(it)) },
-					label = { Text("Latitude") },
-				)
-				OutlinedTextField(
-					modifier = Modifier.weight(1f),
-					value = uiState.lon.orEmpty(),
-					onValueChange = { onUiEvent(AddNewUiEvent.OnSetLon(it)) },
-					label = { Text("Longitude") },
-				)
-			}
-
-			Row(
-				modifier = Modifier.fillMaxWidth(),
-				horizontalArrangement = Arrangement.spacedBy(16.dp),
-			) {
-				var dateExpanded by remember { mutableStateOf(false) }
-				val datePickerState = rememberDatePickerState()
-				LaunchedEffect(datePickerState) {
-					snapshotFlow { datePickerState.selectedDateMillis }
-						.filterNotNull()
-						.collect {
-							onUiEvent(
-								AddNewUiEvent.OnSetStartDate(
-									Instant.fromEpochMilliseconds(it).toLocalDateTime(TimeZone.currentSystemDefault()).date
-								)
+		Row(
+			modifier = Modifier.fillMaxWidth(),
+			horizontalArrangement = Arrangement.spacedBy(16.dp),
+		) {
+			var dateExpanded by remember { mutableStateOf(false) }
+			val datePickerState = rememberDatePickerState()
+			LaunchedEffect(datePickerState) {
+				snapshotFlow { datePickerState.selectedDateMillis }
+					.filterNotNull()
+					.collect {
+						onUiEvent(
+							AddNewUiEvent.OnSetStartDate(
+								Instant.fromEpochMilliseconds(it).toLocalDateTime(TimeZone.currentSystemDefault()).date
 							)
-						}
-				}
-				ExposedDropdownMenuBox(
-					modifier = Modifier.weight(1f),
-					expanded = dateExpanded,
-					onExpandedChange = { dateExpanded = it },
-				) {
-					OutlinedTextField(
-						modifier = Modifier
-							.fillMaxWidth()
-							.menuAnchor(MenuAnchorType.PrimaryNotEditable),
-						value = uiState.startDate?.toString().orEmpty(),
-						onValueChange = {},
-						readOnly = true,
-						singleLine = true,
-						label = { Text("Startdato") },
-						trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = dateExpanded) },
-						colors = ExposedDropdownMenuDefaults.outlinedTextFieldColors(),
-					)
-				}
-				if (dateExpanded) {
-					DatePickerDialog(
-						onDismissRequest = { dateExpanded = false },
-						confirmButton = { TextButton(onClick = { dateExpanded = false }) { Text("Ok") } },
-					) {
-						DatePicker(
-							state = datePickerState,
 						)
 					}
-				}
-
-				var timeExpanded by remember { mutableStateOf(false) }
-				val timePickerState = rememberTimePickerState()
-				val localTime by rememberUpdatedState(LocalTime(timePickerState.hour, timePickerState.minute))
-				LaunchedEffect(timePickerState) {
-					snapshotFlow { localTime }
-						.collect {
-							onUiEvent(AddNewUiEvent.OnSetStartTime(it))
-						}
-				}
-				ExposedDropdownMenuBox(
-					modifier = Modifier.weight(1f),
-					expanded = timeExpanded,
-					onExpandedChange = { timeExpanded = it },
-				) {
-					OutlinedTextField(
-						modifier = Modifier
-							.fillMaxWidth()
-							.menuAnchor(MenuAnchorType.PrimaryNotEditable),
-						value = uiState.startTime?.toString().orEmpty(),
-						onValueChange = {},
-						readOnly = true,
-						singleLine = true,
-						label = { Text("Starttid") },
-						trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = timeExpanded) },
-						colors = ExposedDropdownMenuDefaults.outlinedTextFieldColors(),
-					)
-				}
-				if (timeExpanded) {
-					TimePickerDialog(
-						onCancel = { timeExpanded = false },
-						onConfirm = { timeExpanded = false },
-						title = "Velg tid",
-					) {
-						TimePicker(
-							state = timePickerState,
-						)
-					}
-				}
 			}
-
-			Button(
-				modifier = Modifier.fillMaxWidth(),
-				onClick = { onUiEvent(AddNewUiEvent.OnSave) },
-				enabled = uiState.saveButtonEnabled,
+			ExposedDropdownMenuBox(
+				modifier = Modifier.weight(1f),
+				expanded = dateExpanded,
+				onExpandedChange = { dateExpanded = it },
 			) {
-				Text("Lagre")
+				OutlinedTextField(
+					modifier = Modifier
+						.fillMaxWidth()
+						.menuAnchor(MenuAnchorType.PrimaryNotEditable),
+					value = uiState.startDate?.toString().orEmpty(),
+					onValueChange = {},
+					readOnly = true,
+					singleLine = true,
+					label = { Text("Startdato") },
+					trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = dateExpanded) },
+					colors = ExposedDropdownMenuDefaults.outlinedTextFieldColors(),
+				)
 			}
+			if (dateExpanded) {
+				DatePickerDialog(
+					onDismissRequest = { dateExpanded = false },
+					confirmButton = { TextButton(onClick = { dateExpanded = false }) { Text("Ok") } },
+				) {
+					DatePicker(
+						state = datePickerState,
+					)
+				}
+			}
+
+			var timeExpanded by remember { mutableStateOf(false) }
+			val timePickerState = rememberTimePickerState()
+			val localTime by rememberUpdatedState(LocalTime(timePickerState.hour, timePickerState.minute))
+			LaunchedEffect(timePickerState) {
+				snapshotFlow { localTime }
+					.collect {
+						onUiEvent(AddNewUiEvent.OnSetStartTime(it))
+					}
+			}
+			ExposedDropdownMenuBox(
+				modifier = Modifier.weight(1f),
+				expanded = timeExpanded,
+				onExpandedChange = { timeExpanded = it },
+			) {
+				OutlinedTextField(
+					modifier = Modifier
+						.fillMaxWidth()
+						.menuAnchor(MenuAnchorType.PrimaryNotEditable),
+					value = uiState.startTime?.toString().orEmpty(),
+					onValueChange = {},
+					readOnly = true,
+					singleLine = true,
+					label = { Text("Starttid") },
+					trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = timeExpanded) },
+					colors = ExposedDropdownMenuDefaults.outlinedTextFieldColors(),
+				)
+			}
+			if (timeExpanded) {
+				TimePickerDialog(
+					onCancel = { timeExpanded = false },
+					onConfirm = { timeExpanded = false },
+					title = "Velg tid",
+				) {
+					TimePicker(
+						state = timePickerState,
+					)
+				}
+			}
+		}
+
+		Button(
+			modifier = Modifier.fillMaxWidth(),
+			onClick = { onUiEvent(AddNewUiEvent.OnSave) },
+			enabled = uiState.saveButtonEnabled,
+		) {
+			Text("Lagre")
 		}
 	}
 }

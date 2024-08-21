@@ -16,11 +16,18 @@ internal fun NavGraphBuilder.addNewScreen(
 ) {
 	composable(ADD_NEW_ROUTE) {
 		val viewModel = koinNavViewModel<AddNewViewModel>()
-		AddNewScreen(
-			uiState = viewModel.uiState.collectAsStateWithLifecycle().value,
-			onNavigateUp = onNavigateUp,
-			onUiEvent = viewModel::onUiEvent,
-		)
+
+		AdaptiveAlertDialog(
+			onDismissRequest = onNavigateUp,
+			title = { Text("Legg til kjøtt") },
+		) { contentPadding ->
+			AddNewScreen(
+				uiState = viewModel.uiState.collectAsStateWithLifecycle().value,
+				contentPadding = contentPadding,
+				onNavigateUp = onNavigateUp,
+				onUiEvent = viewModel::onUiEvent,
+			)
+		}
 	}
 }
 
