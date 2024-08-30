@@ -10,6 +10,7 @@ dependencies:
 	- $compose.runtime
 	- $compose.ui
 	- $libs.androidx.activity.compose
+	- $libs.koin.android
 
 settings:
 	android:

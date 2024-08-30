@@ -4,8 +4,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import kotlinx.serialization.Serializable
-import org.koin.compose.viewmodel.koinNavViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
+import shared.koinWorkaround.koinNavViewModel
 
 @Serializable
 internal object Carcasses
