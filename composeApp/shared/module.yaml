@@ -37,3 +37,7 @@ dependencies@jvm:
 
 dependencies@android:
 	- $libs.androidx.navigation.compose
+
+settings:
+	kotlin:
+		serialization: json
