@@ -3,39 +3,59 @@ package domain
 import domain.models.Forecast
 import domain.models.Hourly
 import domain.repositories.ForecastRepository
-import io.mockative.*
+import io.mockative.Mock
+import io.mockative.any
+import io.mockative.classOf
+import io.mockative.coEvery
+import io.mockative.coVerify
+import io.mockative.mock
 import kotlinx.coroutines.test.runTest
+import kotlinx.datetime.DatePeriod
+import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.atStartOfDayIn
+import kotlinx.datetime.plus
+import kotlinx.datetime.toLocalDateTime
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.time.Duration.Companion.hours
 
 class Calculate24HoursDegreesUseCaseTest {
 	@Mock
 	val mockRepository = mock(classOf<ForecastRepository>())
-	private lateinit var subject: Calculate24HoursDegreesUseCase
-	
+	private lateinit var subject: CalculateDueEstimateUseCase
+
 	@BeforeTest
 	fun setUp() {
-		subject = Calculate24HoursDegreesUseCase(mockRepository)
+		subject = CalculateDueEstimateUseCase(mockRepository)
 	}
-	
+
 	@Test
 	fun `GIVEN forecast WHEN called THEN return correct result`() = runTest {
 		// GIVEN
-		val stubForecast = Forecast(hourly = Hourly(time = emptyList(), temperature = List(24) { 4.0 }))
+		val stubForecast = Forecast(
+			hourly = Hourly(
+				time = List(48) {
+					(Instant.parse("2024-03-10T00:00:00Z") + it.hours).toLocalDateTime(TimeZone.UTC)
+				},
+				temperature = List(48) { 20.0 },
+			),
+		)
 		coEvery { mockRepository.getForecast(any(), any(), any(), any()) }
 			.returns(stubForecast)
 		val lat = 1.0
 		val lon = 2.0
 		val startDate = LocalDate(year = 2024, monthNumber = 3, dayOfMonth = 10)
-		val endDate = LocalDate(year = 2024, monthNumber = 3, dayOfMonth = 15)
-		
+		val endDate = startDate + DatePeriod(days = 14)
+
 		// WHEN
-		val result = subject(lat = lat, lon = lon, startDate = startDate, endDate = endDate)
-		
+		val result = subject(now = startDate.plus(DatePeriod(days = 1)).atStartOfDayIn(TimeZone.UTC), lat = lat, lon = lon, startDate = startDate)
+
 		// Then
-		assertEquals(expected = 4.0, actual = result)
+		assertEquals(expected = 20.0, actual = result.current24HoursDegrees)
 		coVerify {
 			mockRepository.getForecast(lat = lat, lon = lon, startDate = startDate, endDate = endDate)
 			stubForecast.hourly.temperature

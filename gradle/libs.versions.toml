@@ -9,7 +9,6 @@ sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
 
 ksp = "2.0.0-1.0.24"
 ##⬆= "2.0.10-1.0.24"
-compose-multiplatform = "1.7.0-alpha03"
 compose-multiplatform-adaptive = "1.0.0-alpha01"
 androidx-activity-compose = "1.9.1"
 androidx-core-ktx = "1.13.1"

@@ -32,7 +32,6 @@ test-dependencies:
 	- $libs.koin.test.junit4
 
 dependencies@jvm:
-	- $compose.preview
 	- $libs.kotlinx.coroutines.swing
 
 dependencies@android:

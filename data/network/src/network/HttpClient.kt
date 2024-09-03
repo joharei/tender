@@ -20,6 +20,6 @@ internal fun httpClient() = HttpClient {
 				Napier.v(tag = "HTTP Client", message = message)
 			}
 		}
-		level = LogLevel.BODY
+		level = LogLevel.INFO
 	}
 }.also { Napier.base(DebugAntilog()) }
