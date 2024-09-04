@@ -6,9 +6,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.dialog
 import kotlinx.serialization.Serializable
+import org.koin.compose.viewmodel.koinNavViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
 import shared.components.AdaptiveAlertDialog
-import shared.koinWorkaround.koinNavViewModel
 
 @Serializable
 internal object AddNew
