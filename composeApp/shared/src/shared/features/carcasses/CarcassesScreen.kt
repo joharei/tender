@@ -24,8 +24,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import shared.features.carcasses.components.Carcass
+import shared.features.carcasses.models.CarcassUiState
 import shared.features.carcasses.models.CarcassesUiState
 import shared.utils.plus
+import kotlin.time.Duration.Companion.days
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -74,7 +76,19 @@ fun CarcassesScreen(
 private fun Preview() {
 	MaterialTheme {
 		CarcassesScreen(
-			uiState = CarcassesUiState(carcasses = emptyList(), loading = true),
+			uiState = CarcassesUiState(
+				carcasses = List(7) {
+					CarcassUiState(
+						id = it.toLong(),
+						name = "Kjøtt $it",
+						durationSinceStarted = it.days,
+						durationUntilDueEstimate = it.days,
+						progress = it / 7f,
+						current24HoursDegrees = it * 10.0,
+					)
+				},
+				loading = false,
+			),
 			onAddNewClick = {},
 		)
 	}
