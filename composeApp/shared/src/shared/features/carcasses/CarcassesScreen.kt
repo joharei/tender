@@ -35,6 +35,8 @@ fun CarcassesScreen(
 	modifier: Modifier = Modifier,
 	uiState: CarcassesUiState,
 	onAddNewClick: () -> Unit,
+	onDeleteClick: (carcassId: Long) -> Unit,
+	onEditClick: (carcassId: Long) -> Unit,
 ) {
 	Scaffold(
 		modifier = modifier,
@@ -62,7 +64,11 @@ fun CarcassesScreen(
 						verticalArrangement = Arrangement.spacedBy(8.dp),
 					) {
 						items(uiState.carcasses) {
-							Carcass(state = it)
+							Carcass(
+								state = it,
+								onDeleteClick = { onDeleteClick(it.id) },
+								onEditClick = { onEditClick(it.id) },
+							)
 						}
 					}
 				}
@@ -90,6 +96,8 @@ private fun Preview() {
 				loading = false,
 			),
 			onAddNewClick = {},
+			onDeleteClick = {},
+			onEditClick = {},
 		)
 	}
 }

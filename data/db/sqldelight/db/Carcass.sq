@@ -10,6 +10,23 @@ selectAll:
 SELECT *
 FROM carcass;
 
+getCarcass:
+SELECT *
+FROM carcass
+WHERE carcass_id = ?;
+
 insert:
 INSERT INTO carcass(name, start_date, location_lat, location_lon)
 VALUES (?, ?, ?, ?);
+
+delete:
+DELETE FROM carcass WHERE carcass_id = ?;
+
+update:
+UPDATE carcass
+SET
+	name = ?,
+	start_date = ?,
+	location_lat = ?,
+	location_lon = ?
+WHERE carcass_id = ?;

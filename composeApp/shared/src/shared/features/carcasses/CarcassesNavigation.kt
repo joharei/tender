@@ -12,13 +12,15 @@ internal object Carcasses
 
 @OptIn(KoinExperimentalAPI::class)
 internal fun NavGraphBuilder.carcassesScreen(
-	onNavigateToAddNew: () -> Unit,
+	onNavigateToAddNew: (carcassId: Long?) -> Unit,
 ) {
 	composable<Carcasses> {
 		val viewModel = koinNavViewModel<CarcassesViewModel>()
 		CarcassesScreen(
 			uiState = viewModel.uiState.collectAsStateWithLifecycle().value,
-			onAddNewClick = onNavigateToAddNew,
+			onAddNewClick = { onNavigateToAddNew(null) },
+			onDeleteClick = viewModel::deleteCarcass,
+			onEditClick = onNavigateToAddNew,
 		)
 	}
 }

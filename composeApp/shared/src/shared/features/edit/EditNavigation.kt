@@ -1,6 +1,7 @@
-package shared.features.addNew
+package shared.features.edit
 
 import androidx.compose.material3.Text
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
@@ -9,23 +10,32 @@ import kotlinx.serialization.Serializable
 import org.koin.compose.viewmodel.koinNavViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
 import shared.components.AdaptiveAlertDialog
+import shared.features.edit.models.EditMode
 
 @Serializable
-internal object AddNew
+internal data class Edit(val carcassId: Long? = null)
 
 @OptIn(KoinExperimentalAPI::class)
-internal fun NavGraphBuilder.addNewScreen(
+internal fun NavGraphBuilder.editScreen(
 	onNavigateUp: () -> Unit,
 ) {
-	dialog<AddNew>(dialogProperties = DialogProperties(usePlatformDefaultWidth = false)) {
-		val viewModel = koinNavViewModel<AddNewViewModel>()
+	dialog<Edit>(dialogProperties = DialogProperties(usePlatformDefaultWidth = false)) {
+		val viewModel = koinNavViewModel<EditViewModel>()
 
+		val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 		AdaptiveAlertDialog(
 			onDismissRequest = onNavigateUp,
-			title = { Text("Legg til kjøtt") },
+			title = {
+				Text(
+					when (uiState.editMode) {
+						EditMode.AddNew -> "Legg til kjøtt"
+						EditMode.Edit -> "Endre kjøtt"
+					},
+				)
+			},
 		) { contentPadding ->
-			AddNewScreen(
-				uiState = viewModel.uiState.collectAsStateWithLifecycle().value,
+			EditScreen(
+				uiState = uiState,
 				contentPadding = contentPadding,
 				onNavigateUp = onNavigateUp,
 				onUiEvent = viewModel::onUiEvent,

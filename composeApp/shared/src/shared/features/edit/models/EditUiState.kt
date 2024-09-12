@@ -1,10 +1,11 @@
-package shared.features.addNew.models
+package shared.features.edit.models
 
 import domain.models.LatLon
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalTime
 
-data class AddNewUiState(
+data class EditUiState(
+	val editMode: EditMode = EditMode.AddNew,
 	val name: String? = null,
 	val lat: String? = null,
 	val latError: Boolean = false,
@@ -15,3 +16,5 @@ data class AddNewUiState(
 	val saveButtonEnabled: Boolean = false,
 	val saveCompleted: Boolean = false,
 )
+
+enum class EditMode { AddNew, Edit }
