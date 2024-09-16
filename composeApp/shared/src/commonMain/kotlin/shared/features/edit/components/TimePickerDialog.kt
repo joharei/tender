@@ -1,7 +1,14 @@
 package shared.features.edit.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -16,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import shared.ui.theme.AppTheme
 
 @Composable
 fun TimePickerDialog(
@@ -94,7 +102,7 @@ private fun TimePickerDialogContent(
 @Preview
 @Composable
 private fun Preview() {
-	MaterialTheme {
+	AppTheme {
 		TimePickerDialogContent(
 			onCancel = {},
 			onConfirm = {},

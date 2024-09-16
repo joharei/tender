@@ -19,6 +19,7 @@ dependencies:
 	- $compose.foundation: exported
 	- $compose.material3
 	- $compose.materialIconsExtended
+	- $compose.components.resources
 	- $compose.ui
 	- $compose.uiTooling
 	- $compose.preview
@@ -41,3 +42,6 @@ dependencies@android:
 settings:
 	kotlin:
 		serialization: json
+
+module:
+	layout: gradle-kmp

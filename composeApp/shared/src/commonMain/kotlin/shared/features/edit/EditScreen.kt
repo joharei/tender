@@ -12,7 +12,6 @@ import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -38,6 +37,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 import shared.features.edit.components.TimePickerDialog
 import shared.features.edit.models.EditUiEvent
 import shared.features.edit.models.EditUiState
+import shared.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -185,7 +185,7 @@ fun EditScreen(
 @Preview
 @Composable
 private fun PreviewAddNewScreen() {
-	MaterialTheme {
+	AppTheme {
 		EditScreen(
 			uiState = EditUiState(),
 			onNavigateUp = {},

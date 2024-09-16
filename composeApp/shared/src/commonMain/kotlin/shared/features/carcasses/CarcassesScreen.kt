@@ -15,7 +15,6 @@ import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,6 +25,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 import shared.features.carcasses.components.Carcass
 import shared.features.carcasses.models.CarcassUiState
 import shared.features.carcasses.models.CarcassesUiState
+import shared.ui.theme.AppTheme
 import shared.utils.plus
 import kotlin.time.Duration.Companion.days
 
@@ -80,7 +80,7 @@ fun CarcassesScreen(
 @Preview
 @Composable
 private fun Preview() {
-	MaterialTheme {
+	AppTheme {
 		CarcassesScreen(
 			uiState = CarcassesUiState(
 				carcasses = List(7) {
