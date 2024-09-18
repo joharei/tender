@@ -11,6 +11,7 @@
 		android:supportsRtl="true"
 		android:theme="@android:style/Theme.Material.Light.NoActionBar"
 		android:enableOnBackInvokedCallback="true"
+		android:localeConfig="@xml/locales_config"
 		tools:targetApi="tiramisu">
 		<activity
 			android:exported="true"

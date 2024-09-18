@@ -1,12 +1,18 @@
 {
 	"configurations": [
-		
 		{
 			"name": "jvmApp",
 			"type": "gradle",
 			"workingDir": "$PROJECT_DIR$",
-			"tasks": ["jvmRun"],
-			"args": ["-DmainClass=MainKt", "--quiet", "-p", "$PROJECT_DIR$/composeApp/jvmApp"],
+			"tasks": [
+				"jvmRun"
+			],
+			"args": [
+				"-DmainClass=MainKt",
+				"--quiet",
+				"-p",
+				"$PROJECT_DIR$/composeApp/jvmApp"
+			],
 			"initScripts": {
 				"flmapper": "ext.mapPath = { path -> null }"
 			}
@@ -15,18 +21,43 @@
 			"name": "Tender [refreshVersions]",
 			"type": "gradle",
 			"workingDir": "$PROJECT_DIR$",
-			"tasks": ["refreshVersions"],
-			"args": [""],
+			"tasks": [
+				"refreshVersions"
+			],
+			"args": [
+				""
+			],
 			"initScripts": {
 				"flmapper": "ext.mapPath = { path -> path }"
 			}
 		},
 		{
-			"name": "CheckModulesTest (1)",
+			"name": "CheckModulesTest",
 			"type": "gradle",
 			"workingDir": "$PROJECT_DIR$",
-			"tasks": [":composeApp:shared:cleanTestDebugUnitTest", ":composeApp:shared:testDebugUnitTest", "--tests", "\"CheckModulesTest\""],
-			"args": [""],
+			"tasks": [
+				":composeApp:shared:cleanTestDebugUnitTest",
+				":composeApp:shared:testDebugUnitTest",
+				"--tests",
+				"\"CheckModulesTest\""
+			],
+			"args": [
+				""
+			],
+			"initScripts": {
+				"flmapper": "ext.mapPath = { path -> path }"
+			}
+		},
+		{
+			"name": "Generate resources",
+			"type": "gradle",
+			"workingDir": "$PROJECT_DIR$",
+			"tasks": [
+				"generateResourceAccessorsForCommonMain"
+			],
+			"args": [
+				""
+			],
 			"initScripts": {
 				"flmapper": "ext.mapPath = { path -> path }"
 			}

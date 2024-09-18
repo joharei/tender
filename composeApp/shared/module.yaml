@@ -42,6 +42,8 @@ dependencies@android:
 settings:
 	kotlin:
 		serialization: json
+	android:
+		namespace: app.reitan.tender.shared
 
 module:
 	layout: gradle-kmp

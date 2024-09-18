@@ -26,3 +26,7 @@ dependencies@android:
 
 dependencies@ios:
 	- $libs.sqldelight.native.driver
+
+settings:
+	android:
+		namespace: app.reitan.tender.data.db

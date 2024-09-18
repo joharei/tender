@@ -22,12 +22,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import shared.ui.theme.AppTheme
+import tender.composeapp.shared.generated.resources.Res
+import tender.composeapp.shared.generated.resources.button_cancel
+import tender.composeapp.shared.generated.resources.button_ok
+import tender.composeapp.shared.generated.resources.time_picker_dialog_select_time
 
 @Composable
 fun TimePickerDialog(
-	title: String = "Select Time",
 	onCancel: () -> Unit,
 	onConfirm: () -> Unit,
 	toggle: @Composable () -> Unit = {},
@@ -40,7 +44,7 @@ fun TimePickerDialog(
 		),
 	) {
 		TimePickerDialogContent(
-			title = title,
+			title = stringResource(Res.string.time_picker_dialog_select_time),
 			onCancel = onCancel,
 			onConfirm = onConfirm,
 			toggle = toggle,
@@ -89,10 +93,10 @@ private fun TimePickerDialogContent(
 				Spacer(modifier = Modifier.weight(1f))
 				TextButton(
 					onClick = onCancel,
-				) { Text("Cancel") }
+				) { Text(stringResource(Res.string.button_cancel)) }
 				TextButton(
 					onClick = onConfirm,
-				) { Text("OK") }
+				) { Text(stringResource(Res.string.button_ok)) }
 			}
 		}
 	}
@@ -106,7 +110,7 @@ private fun Preview() {
 		TimePickerDialogContent(
 			onCancel = {},
 			onConfirm = {},
-			title = "Velg tid",
+			title = stringResource(Res.string.time_picker_dialog_select_time),
 		) {
 			TimePicker(
 				state = rememberTimePickerState(),

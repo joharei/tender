@@ -1,0 +1,24 @@
+<resources>
+	<string name="button_ok">Ok</string>
+	<string name="button_save">Lagre</string>
+	<string name="button_cancel">Avbryt</string>
+	<string name="button_delete">Slett</string>
+
+	<string name="carcasses_title">Skrotter</string>
+	<string name="carcasses_button_add_new">Legg til ny skrott</string>
+	<string name="carcass_label_daily_degrees">%1$s døgngrader (%2$d %)</string>
+	<string name="carcass_duration_short_format">%1$d d %2$d t</string>
+	<string name="carcass_duration_ago_format">%1$s siden</string>
+	<string name="carcass_duration_in_format">Om %1$s</string>
+	<string name="carcass_label_confirm_delete">Vil du slette %1$s?</string>
+
+	<string name="edit_title_add">Legg til kjøtt</string>
+	<string name="edit_title_edit">Endre kjøtt</string>
+	<string name="edit_label_name">Navn</string>
+	<string name="edit_label_lat">Breddegrad</string>
+	<string name="edit_label_lon">Lengdegrad</string>
+	<string name="edit_label_start_date">Startdato</string>
+	<string name="edit_label_start_time">Starttid</string>
+
+	<string name="time_picker_dialog_select_time">Velg tid</string>
+</resources>

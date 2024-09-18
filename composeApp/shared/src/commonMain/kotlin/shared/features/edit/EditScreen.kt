@@ -33,11 +33,20 @@ import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import shared.features.edit.components.TimePickerDialog
 import shared.features.edit.models.EditUiEvent
 import shared.features.edit.models.EditUiState
 import shared.ui.theme.AppTheme
+import tender.composeapp.shared.generated.resources.Res
+import tender.composeapp.shared.generated.resources.button_ok
+import tender.composeapp.shared.generated.resources.button_save
+import tender.composeapp.shared.generated.resources.edit_label_lat
+import tender.composeapp.shared.generated.resources.edit_label_lon
+import tender.composeapp.shared.generated.resources.edit_label_name
+import tender.composeapp.shared.generated.resources.edit_label_start_date
+import tender.composeapp.shared.generated.resources.edit_label_start_time
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -66,7 +75,7 @@ fun EditScreen(
 			modifier = Modifier.fillMaxWidth(),
 			value = uiState.name.orEmpty(),
 			onValueChange = { onUiEvent(EditUiEvent.OnSetName(it)) },
-			label = { Text("Navn") },
+			label = { Text(stringResource(Res.string.edit_label_name)) },
 		)
 
 		Row(
@@ -77,13 +86,13 @@ fun EditScreen(
 				modifier = Modifier.weight(1f),
 				value = uiState.lat.orEmpty(),
 				onValueChange = { onUiEvent(EditUiEvent.OnSetLat(it)) },
-				label = { Text("Latitude") },
+				label = { Text(stringResource(Res.string.edit_label_lat)) },
 			)
 			OutlinedTextField(
 				modifier = Modifier.weight(1f),
 				value = uiState.lon.orEmpty(),
 				onValueChange = { onUiEvent(EditUiEvent.OnSetLon(it)) },
-				label = { Text("Longitude") },
+				label = { Text(stringResource(Res.string.edit_label_lon)) },
 			)
 		}
 
@@ -117,7 +126,7 @@ fun EditScreen(
 					onValueChange = {},
 					readOnly = true,
 					singleLine = true,
-					label = { Text("Startdato") },
+					label = { Text(stringResource(Res.string.edit_label_start_date)) },
 					trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = dateExpanded) },
 					colors = ExposedDropdownMenuDefaults.outlinedTextFieldColors(),
 				)
@@ -125,7 +134,13 @@ fun EditScreen(
 			if (dateExpanded) {
 				DatePickerDialog(
 					onDismissRequest = { dateExpanded = false },
-					confirmButton = { TextButton(onClick = { dateExpanded = false }) { Text("Ok") } },
+					confirmButton = {
+						TextButton(
+							onClick = {
+								dateExpanded = false
+							},
+						) { Text(stringResource(Res.string.button_ok)) }
+					},
 				) {
 					DatePicker(
 						state = datePickerState,
@@ -151,7 +166,7 @@ fun EditScreen(
 					onValueChange = {},
 					readOnly = true,
 					singleLine = true,
-					label = { Text("Starttid") },
+					label = { Text(stringResource(Res.string.edit_label_start_time)) },
 					trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = timeExpanded) },
 					colors = ExposedDropdownMenuDefaults.outlinedTextFieldColors(),
 				)
@@ -163,7 +178,6 @@ fun EditScreen(
 						onUiEvent(EditUiEvent.OnSetStartTime(LocalTime(timePickerState.hour, timePickerState.minute)))
 						timeExpanded = false
 					},
-					title = "Velg tid",
 				) {
 					TimePicker(
 						state = timePickerState,
@@ -177,7 +191,7 @@ fun EditScreen(
 			onClick = { onUiEvent(EditUiEvent.OnSave) },
 			enabled = uiState.saveButtonEnabled,
 		) {
-			Text("Lagre")
+			Text(stringResource(Res.string.button_save))
 		}
 	}
 }

@@ -7,10 +7,14 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.dialog
 import kotlinx.serialization.Serializable
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinNavViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
 import shared.components.AdaptiveAlertDialog
 import shared.features.edit.models.EditMode
+import tender.composeapp.shared.generated.resources.Res
+import tender.composeapp.shared.generated.resources.edit_title_add
+import tender.composeapp.shared.generated.resources.edit_title_edit
 
 @Serializable
 internal data class Edit(val carcassId: Long? = null)
@@ -28,8 +32,8 @@ internal fun NavGraphBuilder.editScreen(
 			title = {
 				Text(
 					when (uiState.editMode) {
-						EditMode.AddNew -> "Legg til kjøtt"
-						EditMode.Edit -> "Endre kjøtt"
+						EditMode.AddNew -> stringResource(Res.string.edit_title_add)
+						EditMode.Edit -> stringResource(Res.string.edit_title_edit)
 					},
 				)
 			},
