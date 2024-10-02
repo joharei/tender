@@ -29,7 +29,10 @@ dependencyResolutionManagement {
 }
 
 refreshVersions {
-	rejectVersionIf { candidate.stabilityLevel.isLessStableThan(current.stabilityLevel) }
+	rejectVersionIf {
+		candidate.stabilityLevel.isLessStableThan(current.stabilityLevel) ||
+			'+' in candidate.value
+	}
 }
 
 include(
