@@ -19,6 +19,7 @@
 	<string name="edit_label_lon">Lengdegrad</string>
 	<string name="edit_label_start_date">Startdato</string>
 	<string name="edit_label_start_time">Starttid</string>
+	<string name="edit_label_daily_degrees_goal">Mål døgngrader</string>
 
 	<string name="time_picker_dialog_select_time">Velg tid</string>
 </resources>

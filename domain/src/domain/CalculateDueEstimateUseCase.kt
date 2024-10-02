@@ -11,6 +11,7 @@ class CalculateDueEstimateUseCase(private val forecastRepository: ForecastReposi
 		lat: Double,
 		lon: Double,
 		startDate: LocalDate,
+		dailyDegreesGoal: Int,
 	): DueEstimate {
 		val forecast = forecastRepository.getForecast(
 			lat = lat,
@@ -28,7 +29,7 @@ class CalculateDueEstimateUseCase(private val forecastRepository: ForecastReposi
 		var sum = .0
 		val dueIndex = forecast.hourly.temperature.indexOfFirst {
 			sum += it
-			sum / 24 >= 40
+			sum / 24 >= dailyDegreesGoal
 		}
 		val dueEstimate = forecast.hourly.time[dueIndex]
 

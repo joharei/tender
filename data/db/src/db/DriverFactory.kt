@@ -1,5 +1,6 @@
 package db
 
+import app.cash.sqldelight.adapter.primitive.IntColumnAdapter
 import app.cash.sqldelight.db.SqlDriver
 
 internal expect class DriverFactory {
@@ -8,7 +9,10 @@ internal expect class DriverFactory {
 
 internal fun createDatabase(driverFactory: DriverFactory): Database {
 	val driver = driverFactory.createDriver()
-	val database = Database(driver)
-	
+	val database = Database(
+		driver = driver,
+		carcassAdapter = Carcass.Adapter(daily_degrees_goalAdapter = IntColumnAdapter),
+	)
+
 	return database
 }

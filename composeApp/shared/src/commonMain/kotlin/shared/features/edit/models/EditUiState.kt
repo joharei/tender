@@ -15,6 +15,7 @@ data class EditUiState(
 	val startTime: LocalTime? = null,
 	val saveButtonEnabled: Boolean = false,
 	val saveCompleted: Boolean = false,
+	val dailyDegreesGoal: Int,
 )
 
 enum class EditMode { AddNew, Edit }

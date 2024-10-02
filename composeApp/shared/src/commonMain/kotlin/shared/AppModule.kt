@@ -1,6 +1,6 @@
 package shared
 
-import db.dbModule
+import db.di.dbModule
 import domain.domainModule
 import network.networkModule
 import org.koin.core.module.dsl.viewModelOf

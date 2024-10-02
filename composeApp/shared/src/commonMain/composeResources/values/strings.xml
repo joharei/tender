@@ -19,6 +19,7 @@
 	<string name="edit_label_lon">Longitude</string>
 	<string name="edit_label_start_date">Start date</string>
 	<string name="edit_label_start_time">Start time</string>
+	<string name="edit_label_daily_degrees_goal">Daily degrees goal</string>
 
 	<string name="time_picker_dialog_select_time">Select time</string>
 </resources>

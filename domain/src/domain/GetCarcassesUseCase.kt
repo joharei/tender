@@ -27,6 +27,7 @@ class GetCarcassesUseCase(
 									lat = it.location.lat,
 									lon = it.location.lon,
 									startDate = it.startDate.toLocalDateTime(TimeZone.currentSystemDefault()).date,
+									dailyDegreesGoal = it.dailyDegreesGoal,
 								)
 								CarcassWithEstimate(
 									id = it.id,

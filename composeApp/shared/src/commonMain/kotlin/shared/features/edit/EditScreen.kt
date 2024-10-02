@@ -1,19 +1,29 @@
 package shared.features.edit
 
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredSize
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material3.Button
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.Label
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.PlainTooltip
+import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TimePicker
@@ -26,7 +36,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.datetime.Instant
@@ -42,6 +54,7 @@ import shared.ui.theme.AppTheme
 import tender.composeapp.shared.generated.resources.Res
 import tender.composeapp.shared.generated.resources.button_ok
 import tender.composeapp.shared.generated.resources.button_save
+import tender.composeapp.shared.generated.resources.edit_label_daily_degrees_goal
 import tender.composeapp.shared.generated.resources.edit_label_lat
 import tender.composeapp.shared.generated.resources.edit_label_lon
 import tender.composeapp.shared.generated.resources.edit_label_name
@@ -186,6 +199,52 @@ fun EditScreen(
 			}
 		}
 
+		Spacer(Modifier.height(8.dp))
+		Column {
+			Row(
+				horizontalArrangement = Arrangement.spacedBy(8.dp),
+				verticalAlignment = Alignment.CenterVertically,
+			) {
+				Text(
+					text = "30",
+					style = MaterialTheme.typography.labelSmall,
+				)
+				val interactionSource = remember { MutableInteractionSource() }
+				Slider(
+					modifier = Modifier.weight(1f),
+					value = uiState.dailyDegreesGoal.toFloat(),
+					onValueChange = { onUiEvent(EditUiEvent.OnSetDailyDegreesGoal(it.toInt())) },
+					steps = 51,
+					valueRange = 30f..80f,
+					interactionSource = interactionSource,
+					thumb = {
+						Label(
+							isPersistent = true,
+							label = {
+								PlainTooltip(modifier = Modifier.requiredSize(32.dp, 25.dp).wrapContentWidth()) {
+									Text(
+										text = "${uiState.dailyDegreesGoal}",
+										textAlign = TextAlign.Center,
+									)
+								}
+							},
+							interactionSource = interactionSource,
+						) {
+							SliderDefaults.Thumb(interactionSource)
+						}
+					},
+				)
+				Text(
+					text = "80",
+					style = MaterialTheme.typography.labelSmall,
+				)
+			}
+			Text(
+				text = stringResource(Res.string.edit_label_daily_degrees_goal),
+				style = MaterialTheme.typography.bodySmall,
+			)
+		}
+
 		Button(
 			modifier = Modifier.fillMaxWidth(),
 			onClick = { onUiEvent(EditUiEvent.OnSave) },
@@ -201,7 +260,7 @@ fun EditScreen(
 private fun PreviewAddNewScreen() {
 	AppTheme {
 		EditScreen(
-			uiState = EditUiState(),
+			uiState = EditUiState(dailyDegreesGoal = 40),
 			onNavigateUp = {},
 			onUiEvent = {},
 		)

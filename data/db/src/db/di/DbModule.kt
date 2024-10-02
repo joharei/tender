@@ -1,6 +1,9 @@
-package db
+package db.di
 
-import db.di.driverFactoryModule
+import db.CarcassRepositoryImpl
+import db.Database
+import db.createDatabase
+import db.mappers.CarcassMapper
 import domain.repositories.CarcassRepository
 import org.koin.core.module.dsl.factoryOf
 import org.koin.dsl.bind
@@ -12,4 +15,5 @@ val dbModule = module {
 	single { get<Database>().carcassQueries }
 
 	factoryOf(::CarcassRepositoryImpl) bind CarcassRepository::class
+	factoryOf(::CarcassMapper)
 }

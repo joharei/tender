@@ -17,6 +17,7 @@ dependencies:
 	- $libs.koin.core
 	- $libs.sqldelight.runtime
 	- $libs.sqldelight.coroutines
+	- $libs.sqldelight.primitive.adapters
 
 dependencies@jvm:
 	- $libs.sqldelight.jvm.driver

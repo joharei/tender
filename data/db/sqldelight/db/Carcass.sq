@@ -1,9 +1,13 @@
+import kotlin.Int;
+
 CREATE TABLE IF NOT EXISTS carcass (
 	carcass_id INTEGER PRIMARY KEY,
 	name TEXT NOT NULL,
 	start_date TEXT NOT NULL,
 	location_lat REAL NOT NULL,
-	location_lon REAL NOT NULL
+	location_lon REAL NOT NULL,
+	daily_degrees_goal INTEGER AS Int NOT NULL,
+	done_date TEXT
 );
 
 selectAll:
@@ -16,8 +20,8 @@ FROM carcass
 WHERE carcass_id = ?;
 
 insert:
-INSERT INTO carcass(name, start_date, location_lat, location_lon)
-VALUES (?, ?, ?, ?);
+INSERT INTO carcass(name, start_date, location_lat, location_lon, daily_degrees_goal)
+VALUES (?, ?, ?, ?, ?);
 
 delete:
 DELETE FROM carcass WHERE carcass_id = ?;
@@ -28,5 +32,12 @@ SET
 	name = ?,
 	start_date = ?,
 	location_lat = ?,
-	location_lon = ?
+	location_lon = ?,
+	daily_degrees_goal = ?
+WHERE carcass_id = ?;
+
+updateDoneDate:
+UPDATE carcass
+SET
+	done_date = ?
 WHERE carcass_id = ?;

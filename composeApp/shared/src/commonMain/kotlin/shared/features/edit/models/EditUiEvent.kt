@@ -9,5 +9,6 @@ sealed interface EditUiEvent {
 	data class OnSetLon(val lon: String) : EditUiEvent
 	data class OnSetStartDate(val startDate: LocalDate) : EditUiEvent
 	data class OnSetStartTime(val startTime: LocalTime) : EditUiEvent
+	data class OnSetDailyDegreesGoal(val dailyDegreesGoal: Int) : EditUiEvent
 	data object OnSave : EditUiEvent
 }

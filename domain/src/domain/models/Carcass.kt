@@ -7,4 +7,6 @@ data class Carcass(
 	val name: String,
 	val startDate: Instant,
 	val location: LatLon,
+	val dailyDegreesGoal: Int,
+	val doneDate: Instant? = null,
 )

@@ -61,6 +61,20 @@
 			"initScripts": {
 				"flmapper": "ext.mapPath = { path -> path }"
 			}
+		},
+		{
+			"name": "Generate SqlDelight Interface",
+			"type": "gradle",
+			"workingDir": "$PROJECT_DIR$",
+			"tasks": [
+				"generateSqlDelightInterface"
+			],
+			"args": [
+				""
+			],
+			"initScripts": {
+				"flmapper": "ext.mapPath = { path -> path }"
+			}
 		}
 	]
 }

@@ -46,6 +46,7 @@ class EditViewModel(
 	private val lon = MutableStateFlow<String?>("6.5987279")
 	private val startDate = MutableStateFlow<LocalDate?>(null)
 	private val startTime = MutableStateFlow<LocalTime?>(null)
+	private val dailyDegreesGoal = MutableStateFlow(40)
 	private val saveCompleted = MutableStateFlow(false)
 	private val latError = lat.map { it != null && it.toDoubleOrNull() == null }
 		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), false)
@@ -61,8 +62,9 @@ class EditViewModel(
 			lonError,
 			startDate,
 			startTime,
+			dailyDegreesGoal,
 			saveCompleted,
-		) { name, lat, latError, lon, lonError, startDate, startTime, saveCompleted ->
+		) { name, lat, latError, lon, lonError, startDate, startTime, dailyDegreesGoal, saveCompleted ->
 			EditUiState(
 				editMode = if (args.carcassId != null) EditMode.Edit else EditMode.AddNew,
 				name = name,
@@ -72,11 +74,12 @@ class EditViewModel(
 				lonError = lonError,
 				startDate = startDate,
 				startTime = startTime,
+				dailyDegreesGoal = dailyDegreesGoal,
 				saveButtonEnabled = name != null && lat != null && !latError && lon != null && !lonError && startDate != null && startTime != null,
 				saveCompleted = saveCompleted,
 			)
 		}
-			.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), EditUiState())
+			.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), EditUiState(dailyDegreesGoal = dailyDegreesGoal.value))
 
 	fun onUiEvent(event: EditUiEvent) {
 		when (event) {
@@ -85,6 +88,7 @@ class EditViewModel(
 			is EditUiEvent.OnSetName -> name.value = event.name
 			is EditUiEvent.OnSetStartDate -> startDate.value = event.startDate
 			is EditUiEvent.OnSetStartTime -> startTime.value = event.startTime
+			is EditUiEvent.OnSetDailyDegreesGoal -> dailyDegreesGoal.value = event.dailyDegreesGoal
 			EditUiEvent.OnSave -> save()
 		}
 	}
@@ -98,6 +102,7 @@ class EditViewModel(
 		val lon = this.lon.value?.toDoubleOrNull() ?: return
 		val startDate = this.startDate.value ?: return
 		val startTime = this.startTime.value ?: return
+		val dailyDegreesGoal = this.dailyDegreesGoal.value
 
 		val startInstant = startDate.atTime(startTime).toInstant(TimeZone.currentSystemDefault())
 		val location = LatLon(lat = lat, lon = lon)
@@ -109,6 +114,7 @@ class EditViewModel(
 						name = name,
 						startDate = startInstant,
 						location = location,
+						dailyDegreesGoal = dailyDegreesGoal,
 					),
 				)
 			} else {
@@ -116,6 +122,7 @@ class EditViewModel(
 					name = name,
 					startDate = startInstant,
 					location = location,
+					dailyDegreesGoal = dailyDegreesGoal,
 				)
 			}
 		}
