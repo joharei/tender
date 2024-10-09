@@ -7,12 +7,9 @@ apply:
 	- ../common.compose-template.yaml
 
 dependencies:
-	- ../../domain
-	- ../../data/db
-	- ../../data/network
+	- ../../diBridge
+	- ../../presentation
 	- $libs.koin.core
-	- $libs.koin.compose
-	- $libs.koin.compose.viewmodel
 	- $libs.koin.compose.viewmodel.navigation
 	- $libs.kotlinx.datetime
 	- $compose.runtime: exported
@@ -24,17 +21,11 @@ dependencies:
 	- $compose.uiTooling
 	- $compose.preview
 	- $libs.material3.adaptive
-	- $libs.lifecycle.runtime.compose
-	- $libs.lifecycle.viewmodel.compose
 	- $libs.navigation.compose
 
 test-dependencies:
-	- $libs.ktor.client.core
 	- $libs.koin.test
 	- $libs.koin.test.junit4
-
-dependencies@jvm:
-	- $libs.kotlinx.coroutines.swing
 
 dependencies@android:
 	- $libs.androidx.navigation.compose

@@ -48,8 +48,8 @@ import kotlinx.datetime.toLocalDateTime
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import shared.features.edit.components.TimePickerDialog
-import shared.features.edit.models.EditUiEvent
-import shared.features.edit.models.EditUiState
+import presentation.features.edit.models.EditUiEvent
+import presentation.features.edit.models.EditUiState
 import shared.ui.theme.AppTheme
 import tender.composeapp.shared.generated.resources.Res
 import tender.composeapp.shared.generated.resources.button_ok

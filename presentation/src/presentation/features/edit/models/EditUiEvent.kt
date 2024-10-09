@@ -1,4 +1,4 @@
-package shared.features.edit.models
+package presentation.features.edit.models
 
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalTime

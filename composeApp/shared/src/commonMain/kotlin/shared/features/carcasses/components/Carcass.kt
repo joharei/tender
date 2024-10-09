@@ -28,9 +28,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import shared.features.carcasses.models.CarcassUiState
+import presentation.features.carcasses.models.CarcassUiState
 import shared.ui.theme.AppTheme
-import shared.utils.format
+import presentation.utils.format
 import tender.composeapp.shared.generated.resources.Res
 import tender.composeapp.shared.generated.resources.button_cancel
 import tender.composeapp.shared.generated.resources.button_delete

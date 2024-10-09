@@ -43,4 +43,6 @@ include(
 	"data:db",
 	"data:network",
 	"domain",
+	"presentation",
+	"diBridge"
 )

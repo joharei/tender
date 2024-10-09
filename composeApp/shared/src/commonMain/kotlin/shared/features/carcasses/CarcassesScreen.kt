@@ -28,8 +28,8 @@ import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import shared.features.carcasses.components.Carcass
-import shared.features.carcasses.models.CarcassUiState
-import shared.features.carcasses.models.CarcassesUiState
+import presentation.features.carcasses.models.CarcassUiState
+import presentation.features.carcasses.models.CarcassesUiState
 import shared.ui.theme.AppTheme
 import shared.utils.plus
 import tender.composeapp.shared.generated.resources.Res

@@ -1,16 +1,9 @@
 package shared
 
-import db.di.dbModule
-import domain.domainModule
-import network.networkModule
-import org.koin.core.module.dsl.viewModelOf
+import di.bridgeModule
 import org.koin.dsl.module
-import shared.features.edit.EditViewModel
-import shared.features.carcasses.CarcassesViewModel
+import presentation.di.presentationModule
 
 internal val appModule = module {
-	includes(domainModule, dbModule, networkModule)
-
-	viewModelOf(::CarcassesViewModel)
-	viewModelOf(::EditViewModel)
+	includes(bridgeModule, presentationModule)
 }

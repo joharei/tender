@@ -1,4 +1,4 @@
-package shared.features.carcasses.models
+package presentation.features.carcasses.models
 
 import kotlin.time.Duration
 

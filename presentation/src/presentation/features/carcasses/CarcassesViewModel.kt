@@ -1,4 +1,4 @@
-package shared.features.carcasses
+package presentation.features.carcasses
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
-import shared.features.carcasses.models.CarcassUiState
-import shared.features.carcasses.models.CarcassesUiState
+import presentation.features.carcasses.models.CarcassUiState
+import presentation.features.carcasses.models.CarcassesUiState
 
 class CarcassesViewModel(
 	getCarcassesUseCase: GetCarcassesUseCase,

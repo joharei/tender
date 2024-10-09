@@ -1,6 +1,6 @@
 @file:Suppress("UNCHECKED_CAST")
 
-package shared.utils
+package presentation.utils
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector

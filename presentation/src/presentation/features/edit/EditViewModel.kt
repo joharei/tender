@@ -1,4 +1,4 @@
-package shared.features.edit
+package presentation.features.edit
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -12,10 +12,10 @@ import domain.models.LatLon
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.datetime.*
-import shared.features.edit.models.EditMode
-import shared.features.edit.models.EditUiEvent
-import shared.features.edit.models.EditUiState
-import shared.utils.combine
+import presentation.features.edit.models.EditMode
+import presentation.features.edit.models.EditUiEvent
+import presentation.features.edit.models.EditUiState
+import presentation.utils.combine
 
 class EditViewModel(
 	savedStateHandle: SavedStateHandle,
@@ -23,7 +23,7 @@ class EditViewModel(
 	private val addCarcassUseCase: AddCarcassUseCase,
 	private val updateCarcassUseCase: UpdateCarcassUseCase,
 ) : ViewModel() {
-	private val args = savedStateHandle.toRoute<Edit>()
+	private val args = savedStateHandle.toRoute<EditDestination>()
 
 	init {
 		if (args.carcassId != null) {

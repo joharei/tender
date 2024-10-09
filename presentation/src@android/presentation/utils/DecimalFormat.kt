@@ -1,4 +1,4 @@
-package shared.utils
+package presentation.utils
 
 actual fun Double.format(): String {
 	return java.text.DecimalFormat().apply {

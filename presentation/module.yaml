@@ -1,0 +1,29 @@
+product:
+	type: lib
+	platforms:
+		- jvm
+		- android
+		- iosX64
+		- iosArm64
+		- iosSimulatorArm64
+
+apply:
+	- ../common.module-template.yaml
+
+dependencies:
+	- ../domain
+	- $libs.koin.core
+	- $libs.koin.compose
+	- $libs.koin.compose.viewmodel
+	- $libs.koin.compose.viewmodel.navigation
+	- $libs.kotlinx.datetime
+	- $libs.lifecycle.viewmodel
+	- $libs.lifecycle.viewmodel.savedstate
+	- $libs.navigation.compose
+
+dependencies@jvm:
+	- $libs.kotlinx.coroutines.swing
+
+settings:
+    kotlin:
+        serialization: json
