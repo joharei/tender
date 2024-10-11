@@ -13,9 +13,7 @@ apply:
 dependencies:
 	- ../domain
 	- $libs.koin.core
-	- $libs.koin.compose
-	- $libs.koin.compose.viewmodel
-	- $libs.koin.compose.viewmodel.navigation
+	- $libs.koin.core.viewmodel
 	- $libs.kotlinx.datetime
 	- $libs.lifecycle.viewmodel
 	- $libs.lifecycle.viewmodel.savedstate

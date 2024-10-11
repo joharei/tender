@@ -1,9 +1,0 @@
-product: ios/app
-
-dependencies:
-	- ../diBridge
-	- ../presentation
-
-settings:
-	ios:
-		teamId: <team ID>

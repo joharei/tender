@@ -39,7 +39,7 @@ include(
 	"composeApp:androidApp",
 	"composeApp:jvmApp",
 	"composeApp:shared",
-	"iosApp",
+	"iosShared",
 	"data:db",
 	"data:network",
 	"domain",

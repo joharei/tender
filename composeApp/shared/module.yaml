@@ -4,12 +4,14 @@ product:
 
 apply:
 	- ../../common.module-template.yaml
-	- ../common.compose-template.yaml
+	- ../common-compose.module-template.yaml
 
 dependencies:
 	- ../../diBridge
 	- ../../presentation
 	- $libs.koin.core
+	- $libs.koin.compose
+	- $libs.koin.compose.viewmodel
 	- $libs.koin.compose.viewmodel.navigation
 	- $libs.kotlinx.datetime
 	- $compose.runtime: exported
