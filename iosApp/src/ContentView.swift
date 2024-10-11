@@ -1,7 +1,8 @@
 import SwiftUI
-import Shared
+import Presentation
 
 struct ContentView: View {
+	let viewModel = EditViewModelHelper().viewModel
     @State private var showContent = false
     var body: some View {
         VStack {
@@ -16,7 +17,7 @@ struct ContentView: View {
                     Image(systemName: "swift")
                         .font(.system(size: 200))
                         .foregroundColor(.accentColor)
-                    Text("SwiftUI: \(Greeting().greet())")
+                    Text("SwiftUI: Greeting")
                 }
                 .transition(.move(edge: .top).combined(with: .opacity))
             }
