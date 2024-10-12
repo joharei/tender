@@ -1,5 +1,9 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
+plugins {
+	alias(libs.plugins.skie)
+}
+
 kotlin {
 	targets.filterIsInstance<KotlinNativeTarget>().forEach {
 		it.binaries {
@@ -10,4 +14,10 @@ kotlin {
 			}
 		}
 	}
+}
+
+skie {
+    features {
+        enableSwiftUIObservingPreview = true
+    }
 }

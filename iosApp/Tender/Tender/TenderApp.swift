@@ -16,7 +16,7 @@ struct TenderApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CarcassesScreen()
         }
     }
 }

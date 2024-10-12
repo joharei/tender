@@ -25,6 +25,3 @@ dependencies@jvm:
 settings:
     kotlin:
         serialization: json
-    ios:
-        framework:
-            basename: Presentation
