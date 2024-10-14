@@ -15,9 +15,8 @@ import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.window.core.layout.WindowWidthSizeClass
-import org.jetbrains.compose.resources.stringResource
-import tender.composeapp.shared.generated.resources.Res
-import tender.composeapp.shared.generated.resources.button_cancel
+import dev.icerock.moko.resources.compose.stringResource
+import resources.MR
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -34,7 +33,7 @@ fun AdaptiveAlertDialog(
 			modifier = modifier,
 			onDismissRequest = onDismissRequest,
 			confirmButton = {},
-			dismissButton = { TextButton(onClick = onDismissRequest) { Text(stringResource(Res.string.button_cancel)) } },
+			dismissButton = { TextButton(onClick = onDismissRequest) { Text(stringResource(MR.strings.button_cancel)) } },
 			title = title,
 			text = { content(PaddingValues()) },
 		)

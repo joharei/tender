@@ -5,3 +5,5 @@ product:
 dependencies:
 	- ../diBridge
 	- ../presentation: exported
+	- ../resources: exported
+	- $libs.moko: exported

@@ -42,7 +42,8 @@ include(
 	"iosShared",
 	"data:db",
 	"data:network",
+	"diBridge",
 	"domain",
 	"presentation",
-	"diBridge"
+	"resources",
 )

@@ -26,19 +26,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import org.jetbrains.compose.resources.stringResource
+import dev.icerock.moko.resources.compose.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import presentation.features.carcasses.models.CarcassUiState
-import shared.ui.theme.AppTheme
 import presentation.utils.format
-import tender.composeapp.shared.generated.resources.Res
-import tender.composeapp.shared.generated.resources.button_cancel
-import tender.composeapp.shared.generated.resources.button_delete
-import tender.composeapp.shared.generated.resources.carcass_duration_ago_format
-import tender.composeapp.shared.generated.resources.carcass_duration_in_format
-import tender.composeapp.shared.generated.resources.carcass_duration_short_format
-import tender.composeapp.shared.generated.resources.carcass_label_confirm_delete
-import tender.composeapp.shared.generated.resources.carcass_label_daily_degrees
+import resources.MR
+import shared.ui.theme.AppTheme
 import kotlin.math.roundToInt
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
@@ -66,7 +59,7 @@ fun Carcass(
 				ProvideTextStyle(MaterialTheme.typography.titleSmall) {
 					Text(
 						stringResource(
-							Res.string.carcass_label_daily_degrees,
+							MR.strings.carcass_label_daily_degrees,
 							state.current24HoursDegrees.format(),
 							(state.progress * 100).roundToInt(),
 						),
@@ -84,12 +77,12 @@ fun Carcass(
 					horizontalArrangement = Arrangement.SpaceBetween,
 				) {
 					Text(
-						text = stringResource(Res.string.carcass_duration_ago_format, state.durationSinceStarted.format()),
+						text = stringResource(MR.strings.carcass_duration_ago_format, state.durationSinceStarted.format()),
 						style = MaterialTheme.typography.labelSmall,
 						color = MaterialTheme.colorScheme.onSurfaceVariant,
 					)
 					Text(
-						text = stringResource(Res.string.carcass_duration_in_format, state.durationUntilDueEstimate.format()),
+						text = stringResource(MR.strings.carcass_duration_in_format, state.durationUntilDueEstimate.format()),
 						style = MaterialTheme.typography.labelSmall,
 						color = MaterialTheme.colorScheme.onSurfaceVariant,
 					)
@@ -102,15 +95,15 @@ fun Carcass(
 					onDismissRequest = { confirmDelete = false },
 					confirmButton = {
 						TextButton(onClick = onDeleteClick) {
-							Text(stringResource(Res.string.button_delete))
+							Text(stringResource(MR.strings.button_delete))
 						}
 					},
 					dismissButton = {
 						TextButton(onClick = { confirmDelete = false }) {
-							Text(stringResource(Res.string.button_cancel))
+							Text(stringResource(MR.strings.button_cancel))
 						}
 					},
-					text = { Text(stringResource(Res.string.carcass_label_confirm_delete, state.name)) },
+					text = { Text(stringResource(MR.strings.carcass_label_confirm_delete, state.name)) },
 				)
 			}
 
@@ -118,7 +111,7 @@ fun Carcass(
 				modifier = Modifier.align(Alignment.End),
 				onClick = { confirmDelete = true },
 			) {
-				Icon(Icons.Default.DeleteOutline, contentDescription = stringResource(Res.string.button_delete))
+				Icon(Icons.Default.DeleteOutline, contentDescription = stringResource(MR.strings.button_delete))
 			}
 		}
 	}
@@ -127,7 +120,7 @@ fun Carcass(
 @Composable
 private fun Duration.format(): String {
 	toComponents { days, hours, _, _, _ ->
-		return stringResource(Res.string.carcass_duration_short_format, days, hours)
+		return stringResource(MR.strings.carcass_duration_short_format, days, hours)
 	}
 }
 

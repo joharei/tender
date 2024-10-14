@@ -9,6 +9,7 @@ apply:
 dependencies:
 	- ../../diBridge
 	- ../../presentation
+	- ../../resources
 	- $libs.koin.core
 	- $libs.koin.compose
 	- $libs.koin.compose.viewmodel
@@ -18,12 +19,12 @@ dependencies:
 	- $compose.foundation: exported
 	- $compose.material3
 	- $compose.materialIconsExtended
-	- $compose.components.resources
 	- $compose.ui
 	- $compose.uiTooling
 	- $compose.preview
 	- $libs.material3.adaptive
 	- $libs.navigation.compose
+	- $libs.moko.compose
 
 test-dependencies:
 	- $libs.koin.test
@@ -37,6 +38,3 @@ settings:
 		serialization: json
 	android:
 		namespace: app.reitan.tender.shared
-
-module:
-	layout: gradle-kmp

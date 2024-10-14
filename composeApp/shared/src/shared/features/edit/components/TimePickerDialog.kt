@@ -22,13 +22,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import org.jetbrains.compose.resources.stringResource
+import dev.icerock.moko.resources.compose.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import resources.MR
 import shared.ui.theme.AppTheme
-import tender.composeapp.shared.generated.resources.Res
-import tender.composeapp.shared.generated.resources.button_cancel
-import tender.composeapp.shared.generated.resources.button_ok
-import tender.composeapp.shared.generated.resources.time_picker_dialog_select_time
 
 @Composable
 fun TimePickerDialog(
@@ -44,7 +41,7 @@ fun TimePickerDialog(
 		),
 	) {
 		TimePickerDialogContent(
-			title = stringResource(Res.string.time_picker_dialog_select_time),
+			title = stringResource(MR.strings.time_picker_dialog_select_time),
 			onCancel = onCancel,
 			onConfirm = onConfirm,
 			toggle = toggle,
@@ -93,10 +90,10 @@ private fun TimePickerDialogContent(
 				Spacer(modifier = Modifier.weight(1f))
 				TextButton(
 					onClick = onCancel,
-				) { Text(stringResource(Res.string.button_cancel)) }
+				) { Text(stringResource(MR.strings.button_cancel)) }
 				TextButton(
 					onClick = onConfirm,
-				) { Text(stringResource(Res.string.button_ok)) }
+				) { Text(stringResource(MR.strings.button_ok)) }
 			}
 		}
 	}
@@ -110,7 +107,7 @@ private fun Preview() {
 		TimePickerDialogContent(
 			onCancel = {},
 			onConfirm = {},
-			title = stringResource(Res.string.time_picker_dialog_select_time),
+			title = stringResource(MR.strings.time_picker_dialog_select_time),
 		) {
 			TimePicker(
 				state = rememberTimePickerState(),

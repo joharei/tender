@@ -2,15 +2,11 @@ package shared.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.text.font.FontFamily
-import org.jetbrains.compose.resources.Font
-import tender.composeapp.shared.generated.resources.Res
-import tender.composeapp.shared.generated.resources.gilda_display_regular
+import dev.icerock.moko.resources.compose.fontFamilyResource
+import resources.MR
 
 @Composable
-fun DisplayFontFamily() = FontFamily(
-	Font(Res.font.gilda_display_regular),
-)
+fun DisplayFontFamily() = fontFamilyResource(MR.fonts.gilda_display_regular)
 
 // Default Material 3 typography values
 val baseline = Typography()

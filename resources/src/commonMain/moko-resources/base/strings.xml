@@ -6,7 +6,7 @@
 
 	<string name="carcasses_title">Meats</string>
 	<string name="carcasses_button_add_new">Add new meat</string>
-	<string name="carcass_label_daily_degrees">%1$s daily degrees (%2$d %)</string>
+	<string name="carcass_label_daily_degrees">%1$s daily degrees (%2$d %%)</string>
 	<string name="carcass_duration_short_format">%1$d d %2$d h</string>
 	<string name="carcass_duration_ago_format">%1$s ago</string>
 	<string name="carcass_duration_in_format">In %1$s</string>

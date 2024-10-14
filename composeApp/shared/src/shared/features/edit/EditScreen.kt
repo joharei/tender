@@ -40,26 +40,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import dev.icerock.moko.resources.compose.stringResource
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
-import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import shared.features.edit.components.TimePickerDialog
 import presentation.features.edit.models.EditUiEvent
 import presentation.features.edit.models.EditUiState
+import resources.MR
+import shared.features.edit.components.TimePickerDialog
 import shared.ui.theme.AppTheme
-import tender.composeapp.shared.generated.resources.Res
-import tender.composeapp.shared.generated.resources.button_ok
-import tender.composeapp.shared.generated.resources.button_save
-import tender.composeapp.shared.generated.resources.edit_label_daily_degrees_goal
-import tender.composeapp.shared.generated.resources.edit_label_lat
-import tender.composeapp.shared.generated.resources.edit_label_lon
-import tender.composeapp.shared.generated.resources.edit_label_name
-import tender.composeapp.shared.generated.resources.edit_label_start_date
-import tender.composeapp.shared.generated.resources.edit_label_start_time
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -88,7 +80,7 @@ fun EditScreen(
 			modifier = Modifier.fillMaxWidth(),
 			value = uiState.name.orEmpty(),
 			onValueChange = { onUiEvent(EditUiEvent.OnSetName(it)) },
-			label = { Text(stringResource(Res.string.edit_label_name)) },
+			label = { Text(stringResource(MR.strings.edit_label_name)) },
 		)
 
 		Row(
@@ -99,13 +91,13 @@ fun EditScreen(
 				modifier = Modifier.weight(1f),
 				value = uiState.lat.orEmpty(),
 				onValueChange = { onUiEvent(EditUiEvent.OnSetLat(it)) },
-				label = { Text(stringResource(Res.string.edit_label_lat)) },
+				label = { Text(stringResource(MR.strings.edit_label_lat)) },
 			)
 			OutlinedTextField(
 				modifier = Modifier.weight(1f),
 				value = uiState.lon.orEmpty(),
 				onValueChange = { onUiEvent(EditUiEvent.OnSetLon(it)) },
-				label = { Text(stringResource(Res.string.edit_label_lon)) },
+				label = { Text(stringResource(MR.strings.edit_label_lon)) },
 			)
 		}
 
@@ -139,7 +131,7 @@ fun EditScreen(
 					onValueChange = {},
 					readOnly = true,
 					singleLine = true,
-					label = { Text(stringResource(Res.string.edit_label_start_date)) },
+					label = { Text(stringResource(MR.strings.edit_label_start_date)) },
 					trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = dateExpanded) },
 					colors = ExposedDropdownMenuDefaults.outlinedTextFieldColors(),
 				)
@@ -152,7 +144,7 @@ fun EditScreen(
 							onClick = {
 								dateExpanded = false
 							},
-						) { Text(stringResource(Res.string.button_ok)) }
+						) { Text(stringResource(MR.strings.button_ok)) }
 					},
 				) {
 					DatePicker(
@@ -179,7 +171,7 @@ fun EditScreen(
 					onValueChange = {},
 					readOnly = true,
 					singleLine = true,
-					label = { Text(stringResource(Res.string.edit_label_start_time)) },
+					label = { Text(stringResource(MR.strings.edit_label_start_time)) },
 					trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = timeExpanded) },
 					colors = ExposedDropdownMenuDefaults.outlinedTextFieldColors(),
 				)
@@ -240,7 +232,7 @@ fun EditScreen(
 				)
 			}
 			Text(
-				text = stringResource(Res.string.edit_label_daily_degrees_goal),
+				text = stringResource(MR.strings.edit_label_daily_degrees_goal),
 				style = MaterialTheme.typography.bodySmall,
 			)
 		}
@@ -250,7 +242,7 @@ fun EditScreen(
 			onClick = { onUiEvent(EditUiEvent.OnSave) },
 			enabled = uiState.saveButtonEnabled,
 		) {
-			Text(stringResource(Res.string.button_save))
+			Text(stringResource(MR.strings.button_save))
 		}
 	}
 }

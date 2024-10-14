@@ -14,7 +14,7 @@ struct CarcassesScreen: View {
 	var uiState: CarcassesUiState = .initial
 
 	var body: some View {
-		CarcassesView(uiState: $uiState)
+		CarcassesView(uiState: $uiState, onDeleteClick: viewModel.deleteCarcass)
 			.collect(flow: viewModel.uiState, into: $uiState)
 	}
 }
@@ -22,17 +22,22 @@ struct CarcassesScreen: View {
 struct CarcassesView: View {
 	@Binding
 	var uiState: CarcassesUiState
+	let onDeleteClick: (Int64) -> Void
 
     var body: some View {
+		let carcassesTitle = MR.strings().carcasses_title.desc().localized()
+
 		NavigationSplitView {
 			List(uiState.carcasses, id: \.id) { carcass in
 				NavigationLink {
 					EditView(carcass: carcass)
 				} label: {
-					Text(carcass.name)
+					CarcassView(uiState: carcass) {
+						onDeleteClick(carcass.id)
+					}
 				}
 			}
-			.navigationTitle("Carcasses")
+			.navigationTitle(carcassesTitle)
 		} detail: {
 			EditView()
 		}
@@ -68,5 +73,5 @@ extension CarcassesUiState {
 	@Previewable
 	var uiState: CarcassesUiState = .sample
 
-	return CarcassesView(uiState: $uiState)
+	return CarcassesView(uiState: $uiState, onDeleteClick: { _ in })
 }

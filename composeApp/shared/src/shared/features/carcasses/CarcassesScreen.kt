@@ -25,16 +25,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import org.jetbrains.compose.resources.stringResource
+import dev.icerock.moko.resources.compose.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import shared.features.carcasses.components.Carcass
 import presentation.features.carcasses.models.CarcassUiState
 import presentation.features.carcasses.models.CarcassesUiState
+import resources.MR
+import shared.features.carcasses.components.Carcass
 import shared.ui.theme.AppTheme
 import shared.utils.plus
-import tender.composeapp.shared.generated.resources.Res
-import tender.composeapp.shared.generated.resources.carcasses_button_add_new
-import tender.composeapp.shared.generated.resources.carcasses_title
 import kotlin.time.Duration.Companion.days
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,16 +47,16 @@ fun CarcassesScreen(
 	Scaffold(
 		modifier = modifier,
 		topBar = {
-			CenterAlignedTopAppBar(title = { Text(stringResource(Res.string.carcasses_title)) })
+			CenterAlignedTopAppBar(title = { Text(stringResource(MR.strings.carcasses_title)) })
 		},
 		floatingActionButton = {
 			TooltipBox(
 				positionProvider = TooltipDefaults.rememberPlainTooltipPositionProvider(),
-				tooltip = { PlainTooltip { Text(stringResource(Res.string.carcasses_button_add_new)) } },
+				tooltip = { PlainTooltip { Text(stringResource(MR.strings.carcasses_button_add_new)) } },
 				state = rememberTooltipState(),
 			) {
 				FloatingActionButton(onClick = onAddNewClick) {
-					Icon(Icons.Default.Add, contentDescription = stringResource(Res.string.carcasses_button_add_new))
+					Icon(Icons.Default.Add, contentDescription = stringResource(MR.strings.carcasses_button_add_new))
 				}
 			}
 		},
