@@ -1,14 +1,14 @@
 package presentation.features.edit.models
 
-import kotlinx.datetime.LocalDate
-import kotlinx.datetime.LocalTime
+import presentation.utils.PlatformLocalDate
+import presentation.utils.PlatformLocalTime
 
-sealed interface EditUiEvent {
-	data class OnSetName(val name: String) : EditUiEvent
-	data class OnSetLat(val lat: String) : EditUiEvent
-	data class OnSetLon(val lon: String) : EditUiEvent
-	data class OnSetStartDate(val startDate: LocalDate) : EditUiEvent
-	data class OnSetStartTime(val startTime: LocalTime) : EditUiEvent
-	data class OnSetDailyDegreesGoal(val dailyDegreesGoal: Int) : EditUiEvent
-	data object OnSave : EditUiEvent
+sealed class EditUiEvent {
+	data class OnSetName(val name: String) : EditUiEvent()
+	data class OnSetLat(val lat: String) : EditUiEvent()
+	data class OnSetLon(val lon: String) : EditUiEvent()
+	data class OnSetStartDate(val startDate: PlatformLocalDate) : EditUiEvent()
+	data class OnSetStartTime(val startTime: PlatformLocalTime) : EditUiEvent()
+	data class OnSetDailyDegreesGoal(val dailyDegreesGoal: Int) : EditUiEvent()
+	data object OnSave : EditUiEvent()
 }

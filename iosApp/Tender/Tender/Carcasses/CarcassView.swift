@@ -11,11 +11,11 @@ import Shared
 struct CarcassView: View {
 	let uiState: CarcassUiState
 	let onDeleteClick: () -> Void
-	
+
 	@State
 	private var showDeleteConfirmation: Bool = false
 
-    var body: some View {
+	var body: some View {
 		VStack {
 			VStack(alignment: .leading) {
 				Text(uiState.name)
@@ -27,7 +27,7 @@ struct CarcassView: View {
 						percent: Int32((uiState.progress * 100).rounded())
 					).localized()
 				)
-				.font(.title3)
+					.font(.title3)
 
 				Spacer()
 					.frame(height: 24)
@@ -38,7 +38,7 @@ struct CarcassView: View {
 						getCarcassDurationAgo(durationSinceStarted: uiState.durationSinceStarted)
 							.localized()
 					)
-					.font(.caption)
+						.font(.caption)
 
 					Spacer()
 
@@ -46,12 +46,12 @@ struct CarcassView: View {
 						getCarcassDurationIn(durationUntilDueEstimate: uiState.durationUntilDueEstimate)
 							.localized()
 					)
-					.font(.caption)
+						.font(.caption)
 				}
-				
+
 				Spacer()
 					.frame(height: 16)
-				
+
 				HStack {
 					Spacer()
 					Button(role: .destructive) {
@@ -73,18 +73,20 @@ struct CarcassView: View {
 			}
 			.padding(16)
 		}
-    }
+	}
 }
 
 extension CarcassUiState {
-	static var preview: CarcassUiState { .init(
-		id: Int64(1),
-		name: "Carcass",
-		durationSinceStarted: Int64(10),
-		durationUntilDueEstimate: Int64(10),
-		progress: 0.5,
-		current24HoursDegrees: 20
-	) }
+	static var preview: CarcassUiState {
+		.init(
+			id: Int64(1),
+			name: "Carcass",
+			durationSinceStarted: Int64(10),
+			durationUntilDueEstimate: Int64(10),
+			progress: 0.5,
+			current24HoursDegrees: 20
+		)
+	}
 }
 
 #Preview(traits: .sizeThatFitsLayout) {

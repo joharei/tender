@@ -26,11 +26,17 @@ extension Text {
 	}
 }
 
+extension Label where Title == Text, Icon == Image {
+	init(resourceKey: KeyPath<MR.strings, StringResource>, systemImage: String) {
+		self.init(MR.strings()[keyPath: resourceKey].localized(), systemImage: systemImage)
+	}
+}
+
 extension Button where Label == Text {
 	init(resourceKey: KeyPath<MR.strings, StringResource>, action: @escaping () -> Void) {
 		self.init(MR.strings()[keyPath: resourceKey].localized(), action: action)
 	}
-	
+
 	init(resourceKey: KeyPath<MR.strings, StringResource>, role: ButtonRole?, action: @escaping () -> Void) {
 		self.init(MR.strings()[keyPath: resourceKey].localized(), role: role, action: action)
 	}

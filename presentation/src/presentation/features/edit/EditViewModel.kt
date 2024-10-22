@@ -9,6 +9,7 @@ import domain.GetCarcassUseCase
 import domain.UpdateCarcassUseCase
 import domain.models.Carcass
 import domain.models.LatLon
+import io.github.aakira.napier.Napier
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.datetime.*
@@ -16,6 +17,9 @@ import presentation.features.edit.models.EditMode
 import presentation.features.edit.models.EditUiEvent
 import presentation.features.edit.models.EditUiState
 import presentation.utils.combine
+import presentation.utils.fromPlatformLocalDate
+import presentation.utils.fromPlatformLocalTime
+import presentation.utils.toPlatform
 
 class EditViewModel(
 	savedStateHandle: SavedStateHandle,
@@ -72,8 +76,8 @@ class EditViewModel(
 				latError = latError,
 				lon = lon,
 				lonError = lonError,
-				startDate = startDate,
-				startTime = startTime,
+				startDate = startDate?.toPlatform(),
+				startTime = startTime?.toPlatform(),
 				dailyDegreesGoal = dailyDegreesGoal,
 				saveButtonEnabled = name != null && lat != null && !latError && lon != null && !lonError && startDate != null && startTime != null,
 				saveCompleted = saveCompleted,
@@ -82,12 +86,13 @@ class EditViewModel(
 			.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), EditUiState(dailyDegreesGoal = dailyDegreesGoal.value))
 
 	fun onUiEvent(event: EditUiEvent) {
+		Napier.d("onUiEvent: $event")
 		when (event) {
 			is EditUiEvent.OnSetLat -> lat.value = event.lat
 			is EditUiEvent.OnSetLon -> lon.value = event.lon
 			is EditUiEvent.OnSetName -> name.value = event.name
-			is EditUiEvent.OnSetStartDate -> startDate.value = event.startDate
-			is EditUiEvent.OnSetStartTime -> startTime.value = event.startTime
+			is EditUiEvent.OnSetStartDate -> startDate.value = event.startDate.fromPlatformLocalDate()
+			is EditUiEvent.OnSetStartTime -> startTime.value = event.startTime.fromPlatformLocalTime()
 			is EditUiEvent.OnSetDailyDegreesGoal -> dailyDegreesGoal.value = event.dailyDegreesGoal
 			EditUiEvent.OnSave -> save()
 		}

@@ -7,6 +7,9 @@ product:
 		- iosArm64
 		- iosSimulatorArm64
 
+aliases:
+	- jvmAndAndroid: [jvm, android]
+
 apply:
 	- ../common.module-template.yaml
 
@@ -18,6 +21,7 @@ dependencies:
 	- $libs.lifecycle.viewmodel
 	- $libs.lifecycle.viewmodel.savedstate
 	- $libs.navigation.compose
+	- $libs.napier
 
 dependencies@jvm:
 	- $libs.kotlinx.coroutines.swing

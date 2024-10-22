@@ -22,26 +22,53 @@ struct CarcassesScreen: View {
 struct CarcassesView: View {
 	@Binding
 	var uiState: CarcassesUiState
+	@State
+	var sheetState: SheetState?
 	let onDeleteClick: (Int64) -> Void
 
-    var body: some View {
+	var body: some View {
 		let carcassesTitle = MR.strings().carcasses_title.desc().localized()
 
-		NavigationSplitView {
+		NavigationStack {
 			List(uiState.carcasses, id: \.id) { carcass in
-				NavigationLink {
-					EditView(carcass: carcass)
-				} label: {
-					CarcassView(uiState: carcass) {
-						onDeleteClick(carcass.id)
-					}
+				CarcassView(uiState: carcass) {
+					onDeleteClick(carcass.id)
+				}
+				.onTapGesture {
+					sheetState = .edit(carcass)
 				}
 			}
 			.navigationTitle(carcassesTitle)
-		} detail: {
-			EditView()
+			.toolbar {
+				ToolbarItem {
+					Button {
+						sheetState = .add
+					} label: {
+						Label(resourceKey: \.carcasses_button_add_new, systemImage: "plus")
+					}
+				}
+			}
+			.sheet(item: $sheetState, onDismiss: {
+				sheetState = nil
+			}) { item in
+				switch item {
+				case .add:
+					EditScreen()
+				case .edit(let carcass):
+					EditScreen(carcassId: carcass.id)
+				}
+			}
 		}
-    }
+	}
+}
+
+enum SheetState: Hashable, Identifiable {
+	var id: Self {
+		return self
+	}
+
+	case edit(CarcassUiState)
+	case add
 }
 
 extension CarcassesUiState {

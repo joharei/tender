@@ -1,8 +1,10 @@
 package presentation.features.edit
 
 import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
+import org.koin.core.component.get
+import org.koin.core.parameter.parametersOf
+import platform.Foundation.NSNumber
 
 class EditViewModelHelper : KoinComponent {
-	val viewModel: EditViewModel by inject()
+	fun viewModel(carcassId: NSNumber?): EditViewModel = get { parametersOf(carcassId as Long?) }
 }
