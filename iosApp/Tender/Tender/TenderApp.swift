@@ -10,13 +10,18 @@ import Shared
 
 @main
 struct TenderApp: App {
+	@ObservedObject var themeManager = ThemeManager()
+	
 	init() {
-		KoinKt.doInitKoin()
+		doInitKoin()
+		
+		setupNavigationBarAppearance(themeManager: themeManager)
 	}
 
     var body: some Scene {
         WindowGroup {
             CarcassesScreen()
+				.environmentObject(themeManager)
         }
     }
 }

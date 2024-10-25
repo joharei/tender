@@ -29,9 +29,12 @@ dependencies:
 test-dependencies:
 	- $libs.koin.test
 	- $libs.koin.test.junit4
+dependencies@jvm:
+    - $libs.moko.compose
 
 dependencies@android:
 	- $libs.androidx.navigation.compose
+	- $libs.moko.compose
 
 settings:
 	kotlin:

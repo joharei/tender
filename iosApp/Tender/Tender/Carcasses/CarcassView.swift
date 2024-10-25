@@ -9,6 +9,8 @@ import SwiftUI
 import Shared
 
 struct CarcassView: View {
+	@EnvironmentObject
+	private var themeManager: ThemeManager
 	let uiState: CarcassUiState
 	let onDeleteClick: () -> Void
 
@@ -19,7 +21,8 @@ struct CarcassView: View {
 		VStack {
 			VStack(alignment: .leading) {
 				Text(uiState.name)
-					.font(.title)
+					.font(themeManager.selectedTheme.headlineMedium)
+					.foregroundStyle(themeManager.selectedTheme.onBackground)
 
 				Text(
 					getCarcassLabelDailyDegrees(
@@ -27,18 +30,22 @@ struct CarcassView: View {
 						percent: Int32((uiState.progress * 100).rounded())
 					).localized()
 				)
-					.font(.title3)
+				.font(themeManager.selectedTheme.titleSmall)
+				.foregroundStyle(themeManager.selectedTheme.onBackground)
 
 				Spacer()
 					.frame(height: 24)
 
 				ProgressView(value: uiState.progress)
+					.tint(themeManager.selectedTheme.primary)
+					.background(themeManager.selectedTheme.secondaryContainer)
 				HStack {
 					Text(
 						getCarcassDurationAgo(durationSinceStarted: uiState.durationSinceStarted)
 							.localized()
 					)
-						.font(.caption)
+					.font(themeManager.selectedTheme.labelSmall)
+					.foregroundStyle(themeManager.selectedTheme.onBackground)
 
 					Spacer()
 
@@ -46,7 +53,8 @@ struct CarcassView: View {
 						getCarcassDurationIn(durationUntilDueEstimate: uiState.durationUntilDueEstimate)
 							.localized()
 					)
-						.font(.caption)
+					.font(themeManager.selectedTheme.labelSmall)
+					.foregroundStyle(themeManager.selectedTheme.onBackground)
 				}
 
 				Spacer()
@@ -60,18 +68,18 @@ struct CarcassView: View {
 						Image(systemName: "trash")
 					}
 					.buttonStyle(.borderless)
+					.foregroundStyle(themeManager.selectedTheme.error)
 					.alert(isPresented: $showDeleteConfirmation) {
 						Alert(
 							title: Text(getCarcassLabelConfirmDelete(name: uiState.name).localized()),
 							primaryButton: .destructive(Text(resourceKey: \.button_delete), action: onDeleteClick),
-							secondaryButton: .default(Text(resourceKey: \.button_cancel)) {
+							secondaryButton: .cancel(Text(resourceKey: \.button_cancel)) {
 								showDeleteConfirmation = false
 							}
 						)
 					}
 				}
 			}
-			.padding(16)
 		}
 	}
 }
@@ -91,4 +99,5 @@ extension CarcassUiState {
 
 #Preview(traits: .sizeThatFitsLayout) {
 	CarcassView(uiState: .preview, onDeleteClick: {})
+		.environmentObject(ThemeManager())
 }

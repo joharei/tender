@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- format: #RRGGBB[AA] or 0xRRGGBB[AA] or RRGGBB[AA] where [AA] - optional -->
+	<color name="primary">
+		<light>0x823C00FF</light>
+		<dark>0xFFB689FF</dark>
+	</color>
+	<color name="onPrimary">
+		<light>0xFFFFFFFF</light>
+		<dark>0x512300FF</dark>
+	</color>
+	<color name="primaryContainer">
+		<light>0xBA5900FF</light>
+		<dark>0xBA5900FF</dark>
+	</color>
+	<color name="onPrimaryContainer">
+		<light>0xFFFFFFFF</light>
+		<dark>0xFFFFFFFF</dark>
+	</color>
+	<color name="secondary">
+		<light>0x87512DFF</light>
+		<dark>0xFEB78BFF</dark>
+	</color>
+	<color name="onSecondary">
+		<light>0xFFFFFFFF</light>
+		<dark>0x4F2504FF</dark>
+	</color>
+	<color name="secondaryContainer">
+		<light>0xFFC09AFF</light>
+		<dark>0x5F3110FF</dark>
+	</color>
+	<color name="onSecondaryContainer">
+		<light>0x5C2F0EFF</light>
+		<dark>0xFFC5A2FF</dark>
+	</color>
+	<color name="tertiary">
+		<light>0x515300FF</light>
+		<dark>0xC9CD49FF</dark>
+	</color>
+	<color name="onTertiary">
+		<light>0xFFFFFFFF</light>
+		<dark>0x313300FF</dark>
+	</color>
+	<color name="tertiaryContainer">
+		<light>0x767900FF</light>
+		<dark>0x767900FF</dark>
+	</color>
+	<color name="onTertiaryContainer">
+		<light>0xFFFFFFFF</light>
+		<dark>0xFFFFFFFF</dark>
+	</color>
+	<color name="error">
+		<light>0xBA1A1AFF</light>
+		<dark>0xFFB4ABFF</dark>
+	</color>
+	<color name="onError">
+		<light>0xFFFFFFFF</light>
+		<dark>0x690005FF</dark>
+	</color>
+	<color name="errorContainer">
+		<light>0xFFDAD6FF</light>
+		<dark>0x93000AFF</dark>
+	</color>
+	<color name="onErrorContainer">
+		<light>0x410002FF</light>
+		<dark>0xFFDAD6FF</dark>
+	</color>
+	<color name="background">
+		<light>0xFFF8F5FF</light>
+		<dark>0x1B110BFF</dark>
+	</color>
+	<color name="onBackground">
+		<light>0x241913FF</light>
+		<dark>0xF4DED3FF</dark>
+	</color>
+	<color name="surface">
+		<light>0xFFF8F5FF</light>
+		<dark>0x1B110BFF</dark>
+	</color>
+	<color name="onSurface">
+		<light>0x241913FF</light>
+		<dark>0xF4DED3FF</dark>
+	</color>
+	<color name="surfaceVariant">
+		<light>0xFBDCCCFF</light>
+		<dark>0x574236FF</dark>
+	</color>
+	<color name="onSurfaceVariant">
+		<light>0x574236FF</light>
+		<dark>0xDEC1B1FF</dark>
+	</color>
+	<color name="outline">
+		<light>0x8A7264FF</light>
+		<dark>0xA58C7DFF</dark>
+	</color>
+	<color name="outlineVariant">
+		<light>0xDEC1B1FF</light>
+		<dark>0x574236FF</dark>
+	</color>
+	<color name="scrim">
+		<light>0x000000FF</light>
+		<dark>0x000000FF</dark>
+	</color>
+	<color name="inverseSurface">
+		<light>0x3A2E27FF</light>
+		<dark>0xF4DED3FF</dark>
+	</color>
+	<color name="inverseOnSurface">
+		<light>0xFFEDE5FF</light>
+		<dark>0x3A2E27FF</dark>
+	</color>
+	<color name="inversePrimary">
+		<light>0xFFB689FF</light>
+		<dark>0x984800FF</dark>
+	</color>
+	<color name="surfaceDim">
+		<light>0xEBD6CBFF</light>
+		<dark>0x1B110BFF</dark>
+	</color>
+	<color name="surfaceBright">
+		<light>0xFFF8F5FF</light>
+		<dark>0x43362FFF</dark>
+	</color>
+	<color name="surfaceContainerLowest">
+		<light>0xFFFFFFFF</light>
+		<dark>0x150C07FF</dark>
+	</color>
+	<color name="surfaceContainerLow">
+		<light>0xFFF1EAFF</light>
+		<dark>0x241913FF</dark>
+	</color>
+	<color name="surfaceContainer">
+		<light>0xFFEADFFF</light>
+		<dark>0x281D17FF</dark>
+	</color>
+	<color name="surfaceContainerHigh">
+		<light>0xF9E4D9FF</light>
+		<dark>0x332720FF</dark>
+	</color>
+	<color name="surfaceContainerHighest">
+		<light>0xF4DED3FF</light>
+		<dark>0x3F322BFF</dark>
+	</color>
+</resources>

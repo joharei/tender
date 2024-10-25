@@ -15,7 +15,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -52,19 +51,19 @@ fun Carcass(
 			Column(
 				modifier = Modifier.padding(16.dp),
 			) {
-				ProvideTextStyle(MaterialTheme.typography.headlineMedium) {
-					Text(state.name)
-				}
+				Text(
+					text = state.name,
+					style = MaterialTheme.typography.headlineMedium,
+				)
 
-				ProvideTextStyle(MaterialTheme.typography.titleSmall) {
-					Text(
-						stringResource(
-							MR.strings.carcass_label_daily_degrees,
-							state.current24HoursDegrees.format(),
-							(state.progress * 100).roundToInt(),
-						),
-					)
-				}
+				Text(
+					text = stringResource(
+						MR.strings.carcass_label_daily_degrees,
+						state.current24HoursDegrees.format(),
+						(state.progress * 100).roundToInt(),
+					),
+					style = MaterialTheme.typography.titleSmall,
+				)
 
 				Spacer(Modifier.height(24.dp))
 
@@ -77,12 +76,18 @@ fun Carcass(
 					horizontalArrangement = Arrangement.SpaceBetween,
 				) {
 					Text(
-						text = stringResource(MR.strings.carcass_duration_ago_format, state.durationSinceStarted.format()),
+						text = stringResource(
+							MR.strings.carcass_duration_ago_format,
+							state.durationSinceStarted.format(),
+						),
 						style = MaterialTheme.typography.labelSmall,
 						color = MaterialTheme.colorScheme.onSurfaceVariant,
 					)
 					Text(
-						text = stringResource(MR.strings.carcass_duration_in_format, state.durationUntilDueEstimate.format()),
+						text = stringResource(
+							MR.strings.carcass_duration_in_format,
+							state.durationUntilDueEstimate.format(),
+						),
 						style = MaterialTheme.typography.labelSmall,
 						color = MaterialTheme.colorScheme.onSurfaceVariant,
 					)
@@ -111,7 +116,11 @@ fun Carcass(
 				modifier = Modifier.align(Alignment.End),
 				onClick = { confirmDelete = true },
 			) {
-				Icon(Icons.Default.DeleteOutline, contentDescription = stringResource(MR.strings.button_delete))
+				Icon(
+					Icons.Default.DeleteOutline,
+					contentDescription = stringResource(MR.strings.button_delete),
+					tint = MaterialTheme.colorScheme.error,
+				)
 			}
 		}
 	}

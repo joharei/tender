@@ -12,7 +12,7 @@ struct EditScreen: View {
 	let viewModel: EditViewModel
 	@State
 	var uiState: EditUiState
-	
+
 	init(carcassId: Int64? = nil) {
 		viewModel = EditViewModelHelper().viewModel(carcassId: carcassId as NSNumber?)
 		uiState = initialEditUiState()
@@ -25,6 +25,8 @@ struct EditScreen: View {
 }
 
 struct EditView: View {
+	@EnvironmentObject
+	private var themeManager: ThemeManager
 	@Binding
 	var uiState: EditUiState
 	let onUiEvent: (EditUiEvent) -> Void
@@ -47,10 +49,10 @@ struct EditView: View {
 							set: { onUiEvent(.OnSetName(name: $0)) }
 						),
 						onCommit: {
-							
+
 						}
 					)
-					
+
 					HStack {
 						TextField(
 							MR.strings().edit_label_lat.desc().localized(),
@@ -67,20 +69,21 @@ struct EditView: View {
 							)
 						)
 					}
-					
+
 					DatePicker(
 						MR.strings().edit_label_start_date.desc().localized(),
 						selection: Binding<Date>(
 							get: { uiState.startDateTime },
 							set: {
 								onUiEvent(.OnSetStartDate(startDate: Calendar.current.dateComponents([.day, .month, .year], from: $0)))
-								
+
 								onUiEvent(.OnSetStartTime(startTime: Calendar.current.dateComponents([.hour, .minute, .second, .nanosecond], from: $0)))
 							}
 						)
 					)
 				}
-				
+				.listRowBackground(themeManager.selectedTheme.surfaceContainerHighest)
+
 				Section {
 					LabeledContent {
 						Text(String(uiState.dailyDegreesGoal))
@@ -102,13 +105,20 @@ struct EditView: View {
 						Text("80")
 					}
 				}
-				
+				.listRowBackground(themeManager.selectedTheme.surfaceContainerHighest)
+
 				Section {
 					Button(resourceKey: \.button_save) {
 						onUiEvent(.OnSave.shared)
 					}
 					.disabled(uiState.saveButtonEnabled == false)
 				}
+				.listRowBackground(
+					uiState.saveButtonEnabled ? themeManager.selectedTheme.primary :
+						themeManager.selectedTheme.onSurface.opacity(0.12))
+				.foregroundStyle(
+					uiState.saveButtonEnabled ? themeManager.selectedTheme.onPrimary :
+						themeManager.selectedTheme.onSurface.opacity(0.38))
 			}
 			.navigationBarTitle(title.desc().localized())
 			.onChange(of: uiState.saveCompleted) {
@@ -116,7 +126,13 @@ struct EditView: View {
 					dismiss()
 				}
 			}
+			.scrollContentBackground(.hidden)
+			.background(themeManager.selectedTheme.background)
+			.foregroundStyle(themeManager.selectedTheme.onSurface)
+			.tint(themeManager.selectedTheme.primary)
 		}
+		.scrollContentBackground(.hidden)
+		.background(themeManager.selectedTheme.background)
 	}
 }
 
@@ -124,6 +140,10 @@ struct EditView: View {
 	@State
 	@Previewable
 	var uiState: EditUiState = initialEditUiState()
-	
+
+	let themeManager = ThemeManager()
+	let _ = setupNavigationBarAppearance(themeManager: themeManager)
+
 	EditView(uiState: $uiState, onUiEvent: { _ in })
+		.environmentObject(themeManager)
 }

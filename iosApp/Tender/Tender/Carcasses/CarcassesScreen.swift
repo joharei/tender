@@ -20,6 +20,8 @@ struct CarcassesScreen: View {
 }
 
 struct CarcassesView: View {
+	@EnvironmentObject
+	private var themeManager: ThemeManager
 	@Binding
 	var uiState: CarcassesUiState
 	@State
@@ -37,6 +39,8 @@ struct CarcassesView: View {
 				.onTapGesture {
 					sheetState = .edit(carcass)
 				}
+				.listRowBackground(themeManager.selectedTheme.surfaceContainer)
+				.listRowSeparatorTint(themeManager.selectedTheme.outlineVariant)
 			}
 			.navigationTitle(carcassesTitle)
 			.toolbar {
@@ -46,6 +50,7 @@ struct CarcassesView: View {
 					} label: {
 						Label(resourceKey: \.carcasses_button_add_new, systemImage: "plus")
 					}
+					.tint(themeManager.selectedTheme.primary)
 				}
 			}
 			.sheet(item: $sheetState, onDismiss: {
@@ -58,6 +63,8 @@ struct CarcassesView: View {
 					EditScreen(carcassId: carcass.id)
 				}
 			}
+			.scrollContentBackground(.hidden)
+			.background(themeManager.selectedTheme.background)
 		}
 	}
 }
@@ -99,6 +106,10 @@ extension CarcassesUiState {
 	@State
 	@Previewable
 	var uiState: CarcassesUiState = .sample
+	let themeManager = ThemeManager()
+	
+	setupNavigationBarAppearance(themeManager: themeManager)
 
 	return CarcassesView(uiState: $uiState, onDeleteClick: { _ in })
+		.environmentObject(themeManager)
 }

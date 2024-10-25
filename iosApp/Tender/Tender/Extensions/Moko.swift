@@ -41,3 +41,9 @@ extension Button where Label == Text {
 		self.init(MR.strings()[keyPath: resourceKey].localized(), role: role, action: action)
 	}
 }
+
+extension Font {
+	init(resource: KeyPath<MR.fonts, FontResource>, withSize: Double = 14.0) {
+		self.init(MR.fonts()[keyPath: resource].uiFont(withSize: withSize))
+    }
+}

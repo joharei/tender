@@ -79,7 +79,7 @@ class EditViewModel(
 				startDate = startDate?.toPlatform(),
 				startTime = startTime?.toPlatform(),
 				dailyDegreesGoal = dailyDegreesGoal,
-				saveButtonEnabled = name != null && lat != null && !latError && lon != null && !lonError && startDate != null && startTime != null,
+				saveButtonEnabled = !name.isNullOrEmpty() && lat != null && !latError && lon != null && !lonError && startDate != null && startTime != null,
 				saveCompleted = saveCompleted,
 			)
 		}
