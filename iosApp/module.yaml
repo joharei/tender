@@ -1,8 +1,0 @@
-product: ios/app
-
-dependencies:
-	- ../data/network
-
-settings:
-	ios:
-		teamId: <team ID>

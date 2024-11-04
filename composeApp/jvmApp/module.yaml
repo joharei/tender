@@ -1,7 +1,7 @@
 product: jvm/app
 
 apply:
-	- ../common.compose-template.yaml
+	- ../common-compose.module-template.yaml
 
 dependencies:
 	- ../shared

@@ -5,6 +5,3 @@ settings:
 		minSdk: 21
 		targetSdk: 34
 		compileSdk: 34
-	ios:
-		framework:
-			isStatic: true
