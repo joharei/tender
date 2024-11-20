@@ -22,20 +22,24 @@ class CalculateDueEstimateUseCase(private val forecastRepository: ForecastReposi
 
 		val nowLocalDateTime = now.toLocalDateTime(TimeZone.UTC)
 		val nowIndex = forecast.hourly.time.indexOfFirst { it >= nowLocalDateTime }
-		val current24HoursDegrees = forecast.hourly.temperature
+		val currentDailyDegrees = forecast.hourly.temperature
 			.take(nowIndex)
-			.sum() / 24
+			.sumOf { it.coerceAtLeast(0.0) } / 24
 
 		var sum = .0
 		val dueIndex = forecast.hourly.temperature.indexOfFirst {
-			sum += it
+			sum += it.coerceAtLeast(0.0)
 			sum / 24 >= dailyDegreesGoal
 		}
-		val dueEstimate = forecast.hourly.time[dueIndex]
+		val dueEstimate = if (dueIndex >= 0) {
+			forecast.hourly.time[dueIndex].toInstant(TimeZone.UTC)
+		} else {
+			Instant.DISTANT_FUTURE
+		}
 
 		return DueEstimate(
-			current24HoursDegrees = current24HoursDegrees,
-			dueEstimate = dueEstimate.toInstant(TimeZone.UTC),
+			currentDailyDegrees = currentDailyDegrees,
+			dueEstimate = dueEstimate,
 		)
 	}
 }

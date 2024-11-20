@@ -13,5 +13,6 @@ class CarcassMapper {
 		location = LatLon(lat = dbModel.location_lat, lon = dbModel.location_lon),
 		dailyDegreesGoal = dbModel.daily_degrees_goal,
 		doneDate = dbModel.done_date?.let { Instant.parse(it) },
+		doneDailyDegrees = dbModel.done_daily_degrees,
 	)
 }

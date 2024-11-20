@@ -6,10 +6,13 @@
 
 	<string name="carcasses_title">Meats</string>
 	<string name="carcasses_button_add_new">Add new meat</string>
+	<string name="carcasses_button_done">Mark as done</string>
 	<string name="carcass_label_daily_degrees">%1$s daily degrees (%2$d %%)</string>
+	<string name="carcass_label_done">Done at %1$d daily degrees</string>
 	<string name="carcass_duration_short_format">%1$d d %2$d h</string>
 	<string name="carcass_duration_ago_format">%1$s ago</string>
 	<string name="carcass_duration_in_format">In %1$s</string>
+	<string name="carcass_duration_in_unknown">a while</string>
 	<string name="carcass_label_confirm_delete">Delete %1$s?</string>
 
 	<string name="edit_title_add">Add meat</string>

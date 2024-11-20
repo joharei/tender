@@ -7,7 +7,8 @@ CREATE TABLE IF NOT EXISTS carcass (
 	location_lat REAL NOT NULL,
 	location_lon REAL NOT NULL,
 	daily_degrees_goal INTEGER AS Int NOT NULL,
-	done_date TEXT
+	done_date TEXT,
+	done_daily_degrees INTEGER AS Int
 );
 
 selectAll:
@@ -36,8 +37,9 @@ SET
 	daily_degrees_goal = ?
 WHERE carcass_id = ?;
 
-updateDoneDate:
+markAsDone:
 UPDATE carcass
 SET
-	done_date = ?
+	done_date = ?,
+	done_daily_degrees = ?
 WHERE carcass_id = ?;

@@ -11,7 +11,10 @@ internal fun createDatabase(driverFactory: DriverFactory): Database {
 	val driver = driverFactory.createDriver()
 	val database = Database(
 		driver = driver,
-		carcassAdapter = Carcass.Adapter(daily_degrees_goalAdapter = IntColumnAdapter),
+		carcassAdapter = Carcass.Adapter(
+			daily_degrees_goalAdapter = IntColumnAdapter,
+			done_daily_degreesAdapter = IntColumnAdapter,
+		),
 	)
 
 	return database

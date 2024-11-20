@@ -6,7 +6,17 @@ data class CarcassUiState(
 	val id: Long,
 	val name: String,
 	val durationSinceStarted: Duration,
-	val durationUntilDueEstimate: Duration,
-	val progress: Float,
-	val current24HoursDegrees: Double,
-)
+	val status: Status,
+) {
+	sealed interface Status {
+		data class InProgress(
+			val durationUntilDueEstimate: Duration,
+			val progress: Float,
+			val currentDailyDegrees: Double,
+		) : Status
+
+		data class Done(
+			val doneDailyDegrees: Int,
+		) : Status
+	}
+}

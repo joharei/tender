@@ -3,6 +3,6 @@ package domain.models
 import kotlinx.datetime.Instant
 
 data class DueEstimate(
-	val current24HoursDegrees: Double,
+	val currentDailyDegrees: Double,
 	val dueEstimate: Instant,
 )
