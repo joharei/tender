@@ -22,6 +22,7 @@ internal fun NavGraphBuilder.carcassesScreen(
 			onAddNewClick = { onNavigateToAddNew(null) },
 			onDeleteClick = viewModel::deleteCarcass,
 			onEditClick = onNavigateToAddNew,
+			onDoneClick = viewModel::markAsDone,
 		)
 	}
 }

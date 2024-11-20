@@ -60,4 +60,13 @@ class CarcassRepositoryImpl(
 		)
 	}
 
+	override suspend fun markAsDone(carcassId: Long, doneDate: Instant, doneDailyDegrees: Int) =
+		withContext(Dispatchers.IO) {
+			carcassQueries.markAsDone(
+				carcass_id = carcassId,
+				done_date = doneDate.toString(),
+				done_daily_degrees = doneDailyDegrees,
+			)
+		}
+
 }

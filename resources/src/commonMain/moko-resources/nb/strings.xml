@@ -6,10 +6,13 @@
 
 	<string name="carcasses_title">Skrotter</string>
 	<string name="carcasses_button_add_new">Legg til ny skrott</string>
+	<string name="carcasses_button_done">Marker som ferdig</string>
 	<string name="carcass_label_daily_degrees">%1$s døgngrader (%2$d %%)</string>
+	<string name="carcass_label_done">Ferdig etter %1$d døgngrader</string>
 	<string name="carcass_duration_short_format">%1$d d %2$d t</string>
 	<string name="carcass_duration_ago_format">%1$s siden</string>
 	<string name="carcass_duration_in_format">Om %1$s</string>
+	<string name="carcass_duration_in_unknown">en stund</string>
 	<string name="carcass_label_confirm_delete">Vil du slette %1$s?</string>
 
 	<string name="edit_title_add">Legg til kjøtt</string>

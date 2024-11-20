@@ -23,7 +23,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.time.Duration.Companion.hours
 
-class Calculate24HoursDegreesUseCaseTest {
+class CalculateDailyDegreesUseCaseTest {
 	@Mock
 	val mockRepository = mock(classOf<ForecastRepository>())
 	private lateinit var subject: CalculateDueEstimateUseCase
@@ -52,10 +52,52 @@ class Calculate24HoursDegreesUseCaseTest {
 		val endDate = startDate + DatePeriod(days = 14)
 
 		// WHEN
-		val result = subject(now = startDate.plus(DatePeriod(days = 1)).atStartOfDayIn(TimeZone.UTC), lat = lat, lon = lon, startDate = startDate)
+		val result = subject(
+			now = startDate.plus(DatePeriod(days = 1)).atStartOfDayIn(TimeZone.UTC),
+			lat = lat,
+			lon = lon,
+			startDate = startDate,
+			dailyDegreesGoal = 40
+		)
 
 		// Then
-		assertEquals(expected = 20.0, actual = result.current24HoursDegrees)
+		assertEquals(expected = 20.0, actual = result.currentDailyDegrees)
+		coVerify {
+			mockRepository.getForecast(lat = lat, lon = lon, startDate = startDate, endDate = endDate)
+			stubForecast.hourly.temperature
+		}
+	}
+
+	@Test
+	fun `GIVEN cold forecast WHEN called THEN return correct result`() = runTest {
+		// GIVEN
+		val stubForecast = Forecast(
+			hourly = Hourly(
+				time = List(48) {
+					(Instant.parse("2024-11-20T00:00:00Z") + it.hours).toLocalDateTime(TimeZone.UTC)
+				},
+				temperature = List(48) { -1.0 },
+			)
+		)
+		coEvery { mockRepository.getForecast(any(), any(), any(), any()) }
+			.returns(stubForecast)
+		val lat = 1.0
+		val lon = 2.0
+		val startDate = LocalDate(year = 2024, monthNumber = 11, dayOfMonth = 20)
+		val endDate = startDate + DatePeriod(days = 14)
+
+		// WHEN
+		val result = subject(
+			now = startDate.plus(DatePeriod(days = 1)).atStartOfDayIn(TimeZone.UTC),
+			lat = lat,
+			lon = lon,
+			startDate = startDate,
+			dailyDegreesGoal = 40
+		)
+
+		// Then
+		assertEquals(expected = 0.0, actual = result.currentDailyDegrees)
+		assertEquals(expected = Instant.DISTANT_FUTURE, result.dueEstimate)
 		coVerify {
 			mockRepository.getForecast(lat = lat, lon = lon, startDate = startDate, endDate = endDate)
 			stubForecast.hourly.temperature

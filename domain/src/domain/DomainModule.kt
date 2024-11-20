@@ -10,4 +10,5 @@ val domainModule = module {
 	factoryOf(::AddCarcassUseCase)
 	factoryOf(::DeleteCarcassUseCase)
 	factoryOf(::UpdateCarcassUseCase)
+	factoryOf(::MarkAsDoneUseCase)
 }

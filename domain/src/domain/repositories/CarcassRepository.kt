@@ -11,4 +11,5 @@ interface CarcassRepository {
 	suspend fun addCarcass(name: String, startDate: Instant, location: LatLon, dailyDegreesGoal: Int)
 	suspend fun deleteCarcass(carcassId: Long)
 	suspend fun updateCarcass(carcass: Carcass)
+	suspend fun markAsDone(carcassId: Long, doneDate: Instant, doneDailyDegrees: Int)
 }
