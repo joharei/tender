@@ -198,16 +198,17 @@ fun EditScreen(
 				verticalAlignment = Alignment.CenterVertically,
 			) {
 				Text(
-					text = "30",
+					text = "0",
 					style = MaterialTheme.typography.labelSmall,
 				)
 				val interactionSource = remember { MutableInteractionSource() }
+				val dailyDegreesRange = 0f..80f
 				Slider(
 					modifier = Modifier.weight(1f),
 					value = uiState.dailyDegreesGoal.toFloat(),
 					onValueChange = { onUiEvent(EditUiEvent.OnSetDailyDegreesGoal(it.toInt())) },
-					steps = 51,
-					valueRange = 30f..80f,
+					steps = (dailyDegreesRange.endInclusive - dailyDegreesRange.start).toInt() + 1,
+					valueRange = dailyDegreesRange,
 					interactionSource = interactionSource,
 					thumb = {
 						Label(
