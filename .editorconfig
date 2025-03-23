@@ -1,5 +1,6 @@
 [*]
 indent_style = tab
+indent_size = 2
 insert_final_newline = true
 
 [*.{kt,kts}]
@@ -8,3 +9,6 @@ ij_kotlin_allow_trailing_comma = true
 ij_kotlin_allow_trailing_comma_on_call_site = true
 ij_kotlin_name_count_to_use_star_import = 2147483647
 ij_kotlin_name_count_to_use_star_import_for_members = 2147483647
+
+[*.{yaml,yml}]
+indent_style = space
