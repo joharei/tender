@@ -17,7 +17,6 @@ pluginManagement {
 
 plugins {
 	id("org.jetbrains.amper.settings.plugin").version("0.5.0")
-	id("de.fayard.refreshVersions") version "0.60.5"
 }
 
 dependencyResolutionManagement {
@@ -25,13 +24,6 @@ dependencyResolutionManagement {
 		google()
 		mavenCentral()
 		maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-	}
-}
-
-refreshVersions {
-	rejectVersionIf {
-		candidate.stabilityLevel.isLessStableThan(current.stabilityLevel) ||
-			'+' in candidate.value
 	}
 }
 

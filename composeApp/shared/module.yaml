@@ -1,43 +1,43 @@
 product:
-	type: lib
-	platforms: [jvm, android]
+  type: lib
+  platforms: [ jvm, android ]
 
 apply:
-	- ../../common.module-template.yaml
-	- ../common-compose.module-template.yaml
+  - ../../common.module-template.yaml
+  - ../common-compose.module-template.yaml
 
 dependencies:
-	- ../../diBridge
-	- ../../presentation
-	- ../../resources
-	- $libs.koin.core
-	- $libs.koin.compose
-	- $libs.koin.compose.viewmodel
-	- $libs.koin.compose.viewmodel.navigation
-	- $libs.kotlinx.datetime
-	- $compose.runtime: exported
-	- $compose.foundation: exported
-	- $compose.material3
-	- $compose.materialIconsExtended
-	- $compose.ui
-	- $compose.uiTooling
-	- $compose.preview
-	- $libs.material3.adaptive
-	- $libs.navigation.compose
-	- $libs.moko.compose
+  - ../../diBridge
+  - ../../presentation
+  - ../../resources
+  - $libs.koin.core
+  - $libs.koin.compose
+  - $libs.koin.compose.viewmodel
+  - $libs.koin.compose.viewmodel.navigation
+  - $libs.kotlinx.datetime
+  - $compose.runtime: exported
+  - $compose.foundation: exported
+  - $compose.material3
+  - $compose.materialIconsExtended
+  - $compose.ui
+  - $compose.uiTooling
+  - $compose.preview
+  - $libs.material3.adaptive
+  - $libs.navigation.compose
+  - $libs.moko.compose
 
 test-dependencies:
-	- $libs.koin.test
-	- $libs.koin.test.junit4
+  - $libs.koin.test
+  - $libs.koin.test.junit4
 dependencies@jvm:
-    - $libs.moko.compose
+  - $libs.moko.compose
 
 dependencies@android:
-	- $libs.androidx.navigation.compose
-	- $libs.moko.compose
+  - $libs.androidx.navigation.compose
+  - $libs.moko.compose
 
 settings:
-	kotlin:
-		serialization: json
-	android:
-		namespace: app.reitan.tender.shared
+  kotlin:
+    serialization: json
+  android:
+    namespace: app.reitan.tender.shared
