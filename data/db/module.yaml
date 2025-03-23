@@ -1,33 +1,35 @@
 product:
-	type: lib
-	platforms:
-		- jvm
-		- android
-		- iosX64
-		- iosArm64
-		- iosSimulatorArm64
+  type: lib
+  platforms:
+    - jvm
+    - android
+    - iosX64
+    - iosArm64
+    - iosSimulatorArm64
 
 apply:
-	- ../../common.module-template.yaml
+  - ../../common.module-template.yaml
 
 dependencies:
-	- ../../domain
-	- $libs.kotlinx.coroutines.core
-	- $libs.kotlinx.datetime
-	- $libs.koin.core
-	- $libs.sqldelight.runtime
-	- $libs.sqldelight.coroutines
-	- $libs.sqldelight.primitive.adapters
+  - ../../domain
+  - $libs.kotlinx.coroutines.core
+  - $libs.kotlinx.datetime
+  - $libs.koin.core
+  - $libs.sqldelight.runtime
+  - $libs.sqldelight.coroutines
+  - $libs.sqldelight.primitive.adapters
 
 dependencies@jvm:
-	- $libs.sqldelight.jvm.driver
+  - $libs.sqldelight.jvm.driver
 
 dependencies@android:
-	- $libs.sqldelight.android.driver
+  - $libs.sqldelight.android.driver
 
 dependencies@ios:
-	- $libs.sqldelight.native.driver
+  - $libs.sqldelight.native.driver
 
 settings:
-	android:
-		namespace: app.reitan.tender.data.db
+  kotlin:
+    freeCompilerArgs: [ -Xexpect-actual-classes ]
+  android:
+    namespace: app.reitan.tender.data.db

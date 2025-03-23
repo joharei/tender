@@ -1,19 +1,25 @@
 product:
-	type: lib
-	platforms:
-		- jvm
-		- iosX64
-		- iosArm64
-		- iosSimulatorArm64
+  type: lib
+  platforms:
+    - jvm
+    - iosX64
+    - iosArm64
+    - iosSimulatorArm64
 
 apply:
-	- ../common.module-template.yaml
+  - ../common.module-template.yaml
 
 dependencies:
-	- $libs.kotlinx.coroutines.core
-	- $libs.kotlinx.datetime
-	- $libs.koin.core
+  - $libs.kotlinx.coroutines.core
+  - $libs.kotlinx.datetime
+  - $libs.koin.core
 
 test-dependencies:
-	- $libs.kotlinx.coroutines.test
-	- $libs.mockative
+  - $libs.kotlinx.coroutines.test
+  - $libs.mockative
+
+settings:
+  kotlin:
+    ksp:
+      processors:
+        - $libs.mockative.processor

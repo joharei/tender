@@ -1,31 +1,32 @@
 product:
-	type: lib
-	platforms:
-		- jvm
-		- android
-		- iosX64
-		- iosArm64
-		- iosSimulatorArm64
+  type: lib
+  platforms:
+    - jvm
+    - android
+    - iosX64
+    - iosArm64
+    - iosSimulatorArm64
 
 aliases:
-	- jvmAndAndroid: [jvm, android]
+  - jvmAndAndroid: [ jvm, android ]
 
 apply:
-	- ../common.module-template.yaml
+  - ../common.module-template.yaml
 
 dependencies:
-	- ../domain
-	- $libs.koin.core
-	- $libs.koin.core.viewmodel
-	- $libs.kotlinx.datetime
-	- $libs.lifecycle.viewmodel
-	- $libs.lifecycle.viewmodel.savedstate
-	- $libs.navigation.compose
-	- $libs.napier
+  - ../domain
+  - $libs.koin.core
+  - $libs.koin.core.viewmodel
+  - $libs.kotlinx.datetime
+  - $libs.lifecycle.viewmodel
+  - $libs.lifecycle.viewmodel.savedstate
+  - $libs.navigation.compose
+  - $libs.napier
 
 dependencies@jvm:
-	- $libs.kotlinx.coroutines.swing
+  - $libs.kotlinx.coroutines.swing
 
 settings:
-    kotlin:
-        serialization: json
+  kotlin:
+    serialization: json
+    freeCompilerArgs: [ -Xexpect-actual-classes ]
