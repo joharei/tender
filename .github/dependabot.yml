@@ -1,30 +1,19 @@
 # https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
 version: 2
 updates:
-    - package-ecosystem: "github-actions"
-      directory: "/"
-      schedule:
-          interval: "monthly"
-          day: "friday"
-      labels: [ "dependency update" ]
-    - package-ecosystem: "gradle"
-      directory: "/"
-      registries: "*"
-      schedule:
-          interval: "monthly"
-          day: "friday"
-      labels: [ "dependency update" ]
-      groups:
-          kotlin-ksp-skie:
-              patterns:
-                  - "org.jetbrains.kotlin:*"
-                  - "org.jetbrains.kotlin.*"
-                  - "com.google.devtools.ksp*"
-                  - "co.touchlab.skie*"
-          all:
-              patterns: ["*"]
-              exclude-patterns:
-                  - "org.jetbrains.kotlin:*"
-                  - "org.jetbrains.kotlin.*"
-                  - "com.google.devtools.ksp*"
-                  - "co.touchlab.skie*"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+      day: "friday"
+    labels: [ "dependency update" ]
+  - package-ecosystem: "gradle"
+    directory: "/"
+    registries: "*"
+    schedule:
+      interval: "monthly"
+      day: "friday"
+    labels: [ "dependency update" ]
+    groups:
+      all:
+        patterns: [ "*" ]
