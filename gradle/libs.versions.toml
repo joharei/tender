@@ -9,7 +9,7 @@ moko = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko"
 
 [versions]
 
-ksp = "2.0.20-1.0.25"
+ksp = "2.1.20-1.0.31"
 ##⬆= "2.0.21-1.0.25"
 ##⬆= "2.0.21-1.0.26"
 ##⬆= "2.0.21-1.0.27"
@@ -28,7 +28,7 @@ napier = "2.7.1"
 logback = "1.5.12"
 koin = "4.0.0"
 mockative = "3.0.0"
-skie = "0.9.3"
+skie = "0.10.1"
 moko = "0.24.3"
 
 [libraries]
