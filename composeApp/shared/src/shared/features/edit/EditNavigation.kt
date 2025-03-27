@@ -7,20 +7,18 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.dialog
 import dev.icerock.moko.resources.compose.stringResource
-import org.koin.compose.viewmodel.koinNavViewModel
-import org.koin.core.annotation.KoinExperimentalAPI
+import org.koin.compose.viewmodel.koinViewModel
 import presentation.features.edit.EditDestination
 import presentation.features.edit.EditViewModel
 import presentation.features.edit.models.EditMode
 import resources.MR
 import shared.components.AdaptiveAlertDialog
 
-@OptIn(KoinExperimentalAPI::class)
 internal fun NavGraphBuilder.editScreen(
 	onNavigateUp: () -> Unit,
 ) {
 	dialog<EditDestination>(dialogProperties = DialogProperties(usePlatformDefaultWidth = false)) {
-		val viewModel = koinNavViewModel<EditViewModel>()
+		val viewModel = koinViewModel<EditViewModel>()
 
 		val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 		AdaptiveAlertDialog(

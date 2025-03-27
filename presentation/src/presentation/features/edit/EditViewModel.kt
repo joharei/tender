@@ -9,10 +9,19 @@ import domain.GetCarcassUseCase
 import domain.UpdateCarcassUseCase
 import domain.models.Carcass
 import domain.models.LatLon
-import io.github.aakira.napier.Napier
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import kotlinx.datetime.*
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.LocalTime
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.atTime
+import kotlinx.datetime.toInstant
+import kotlinx.datetime.toLocalDateTime
 import presentation.features.edit.models.EditMode
 import presentation.features.edit.models.EditUiEvent
 import presentation.features.edit.models.EditUiState
@@ -86,7 +95,6 @@ class EditViewModel(
 			.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), EditUiState(dailyDegreesGoal = dailyDegreesGoal.value))
 
 	fun onUiEvent(event: EditUiEvent) {
-		Napier.d("onUiEvent: $event")
 		when (event) {
 			is EditUiEvent.OnSetLat -> lat.value = event.lat
 			is EditUiEvent.OnSetLon -> lon.value = event.lon
