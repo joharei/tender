@@ -33,7 +33,6 @@ dependencies@jvm:
   - $libs.moko.compose
 
 dependencies@android:
-  - $libs.androidx.navigation.compose
   - $libs.moko.compose
 
 settings:
