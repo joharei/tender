@@ -1,18 +1,19 @@
 product: android/app
 
 apply:
-	- ../../common.module-template.yaml
-	- ../common-compose.module-template.yaml
+  - ../../common.module-template.yaml
+  - ../common-compose.module-template.yaml
 
 dependencies:
-	- ../shared
-	- $compose.foundation
-	- $compose.runtime
-	- $compose.ui
-	- $libs.androidx.activity.compose
-	- $libs.koin.android
+  - ../shared
+  - $compose.foundation
+  - $compose.runtime
+  - $compose.ui
+  - $libs.androidx.activity.compose
+  - $libs.koin.android
 
 settings:
-	android:
-		namespace: app.reitan.tender
-		applicationId: app.reitan.tender
+  android:
+    namespace: app.reitan.tender
+    applicationId: app.reitan.tender
+    signing: enabled
