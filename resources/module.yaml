@@ -8,3 +8,7 @@ dependencies:
 
 module:
 	layout: gradle-kmp
+
+settings:
+  kotlin:
+    freeCompilerArgs: [ -Xexpect-actual-classes ]

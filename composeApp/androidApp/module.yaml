@@ -17,3 +17,5 @@ settings:
     namespace: app.reitan.tender
     applicationId: app.reitan.tender
     signing: enabled
+    versionCode: 1
+    versionName: "1"
