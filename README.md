@@ -1,3 +1,7 @@
+This is an app for calculating how long to dry age meat in open air.
+
+The icon comes from [Openclipart](https://openclipart.org/detail/336344/uncooked-steak).
+
 This is a Kotlin Multiplatform project targeting Android, iOS.
 
 * `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
