@@ -27,6 +27,16 @@ jobs:
       - name: Build release bundle
         run: ./gradlew bundleRelease --no-daemon
 
+      - name: Sign AAB
+        uses: ilharp/sign-android-release@v1
+        with:
+          releaseDir: composeApp/androidApp/build/outputs/bundle/release
+          signingKey: ${{ secrets.SIGNING_KEY }}
+          keyAlias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+          buildToolsVersion: 36.0.0
+
       - name: Deploy to Play Store
         uses: r0adkll/upload-google-play@v1
         with:
