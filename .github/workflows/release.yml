@@ -6,7 +6,7 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-24.04-arm
+    runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -18,11 +18,24 @@ jobs:
           distribution: 'zulu'
           java-version: '21'
 
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
 
       - name: Build release bundle
-        run: ./gradlew bundleRelease
+        run: ./gradlew bundleRelease --no-daemon
+
+      - name: Sign AAB
+        uses: ilharp/sign-android-release@v1
+        with:
+          releaseDir: composeApp/androidApp/build/outputs/bundle/release
+          signingKey: ${{ secrets.SIGNING_KEY }}
+          keyAlias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+          buildToolsVersion: 36.0.0
 
       - name: Deploy to Play Store
         uses: r0adkll/upload-google-play@v1
