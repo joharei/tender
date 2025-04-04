@@ -20,6 +20,12 @@ jobs:
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools' # instead of the default 'tools platform-tools'
+      - name: Install canary emulator and tools
+        run: |
+          sdkmanager --channel=3 emulator
+          sdkmanager tools
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
