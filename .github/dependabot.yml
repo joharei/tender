@@ -1,5 +1,18 @@
 # https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
 version: 2
+registries:
+  compose-multiplatform:
+    type: maven-repository
+    url: https://maven.pkg.jetbrains.space/public/p/compose/dev
+  intellij:
+    type: maven-repository
+    url: https://www.jetbrains.com/intellij-repository/releases
+  intellij-dependencies:
+    type: maven-repository
+    url: https://packages.jetbrains.team/maven/p/ij/intellij-dependencies
+  amper:
+    type: maven-repository
+    url: https://packages.jetbrains.team/maven/p/amper/amper
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
