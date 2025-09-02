@@ -6,21 +6,21 @@ moko = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko"
 
 [versions]
 
-compose-multiplatform-adaptive = "1.0.1"
+compose-multiplatform-adaptive = "1.2.0+dev2890"
 androidx-activity-compose = "1.10.1"
-lifecycle = "2.8.4"
-navigation = "2.8.0-alpha13"
+lifecycle = "2.10.0+dev2890"
+navigation = "2.9.10-alpha01"
 accompanist = "0.37.3"
 coroutines = "1.10.2"
-ktor = "3.1.2"
-sqldelight = "2.0.2"
-kotlinx-datetime = "0.6.2"
+ktor = "3.2.3"
+sqldelight = "2.1.0"
+kotlinx-datetime = "0.7.1-0.6.x-compat"
 napier = "2.7.1"
 logback = "1.5.18"
-koin = "4.0.4"
+koin = "4.1.0"
 mockative = "3.0.1"
-skie = "0.10.1"
-moko = "0.24.5"
+skie = "0.10.6"
+moko = "0.25.0"
 
 [libraries]
 
