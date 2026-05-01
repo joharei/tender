@@ -49,7 +49,7 @@ jobs:
           status: draft
 
       - name: Create GitHub release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag_name: v${{ github.run_number }}
