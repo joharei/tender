@@ -2,143 +2,160 @@
 <resources>
 	<!-- format: #RRGGBB[AA] or 0xRRGGBB[AA] or RRGGBB[AA] where [AA] - optional -->
 	<color name="primary">
-		<light>0x823C00FF</light>
-		<dark>0xFFB689FF</dark>
+		<light>#9C4600</light>
+		<dark>#FFB68D</dark>
 	</color>
 	<color name="onPrimary">
-		<light>0xFFFFFFFF</light>
-		<dark>0x512300FF</dark>
+		<light>#FFF7F5</light>
+		<dark>#6C2E00</dark>
 	</color>
 	<color name="primaryContainer">
-		<light>0xBA5900FF</light>
-		<dark>0xBA5900FF</dark>
+		<light>#FE7600</light>
+		<dark>#FE7600</dark>
 	</color>
 	<color name="onPrimaryContainer">
-		<light>0xFFFFFFFF</light>
-		<dark>0xFFFFFFFF</dark>
-	</color>
-	<color name="secondary">
-		<light>0x87512DFF</light>
-		<dark>0xFEB78BFF</dark>
-	</color>
-	<color name="onSecondary">
-		<light>0xFFFFFFFF</light>
-		<dark>0x4F2504FF</dark>
-	</color>
-	<color name="secondaryContainer">
-		<light>0xFFC09AFF</light>
-		<dark>0x5F3110FF</dark>
-	</color>
-	<color name="onSecondaryContainer">
-		<light>0x5C2F0EFF</light>
-		<dark>0xFFC5A2FF</dark>
-	</color>
-	<color name="tertiary">
-		<light>0x515300FF</light>
-		<dark>0xC9CD49FF</dark>
-	</color>
-	<color name="onTertiary">
-		<light>0xFFFFFFFF</light>
-		<dark>0x313300FF</dark>
-	</color>
-	<color name="tertiaryContainer">
-		<light>0x767900FF</light>
-		<dark>0x767900FF</dark>
-	</color>
-	<color name="onTertiaryContainer">
-		<light>0xFFFFFFFF</light>
-		<dark>0xFFFFFFFF</dark>
-	</color>
-	<color name="error">
-		<light>0xBA1A1AFF</light>
-		<dark>0xFFB4ABFF</dark>
-	</color>
-	<color name="onError">
-		<light>0xFFFFFFFF</light>
-		<dark>0x690005FF</dark>
-	</color>
-	<color name="errorContainer">
-		<light>0xFFDAD6FF</light>
-		<dark>0x93000AFF</dark>
-	</color>
-	<color name="onErrorContainer">
-		<light>0x410002FF</light>
-		<dark>0xFFDAD6FF</dark>
-	</color>
-	<color name="background">
-		<light>0xFFF8F5FF</light>
-		<dark>0x1B110BFF</dark>
-	</color>
-	<color name="onBackground">
-		<light>0x241913FF</light>
-		<dark>0xF4DED3FF</dark>
-	</color>
-	<color name="surface">
-		<light>0xFFF8F5FF</light>
-		<dark>0x1B110BFF</dark>
-	</color>
-	<color name="onSurface">
-		<light>0x241913FF</light>
-		<dark>0xF4DED3FF</dark>
-	</color>
-	<color name="surfaceVariant">
-		<light>0xFBDCCCFF</light>
-		<dark>0x574236FF</dark>
-	</color>
-	<color name="onSurfaceVariant">
-		<light>0x574236FF</light>
-		<dark>0xDEC1B1FF</dark>
-	</color>
-	<color name="outline">
-		<light>0x8A7264FF</light>
-		<dark>0xA58C7DFF</dark>
-	</color>
-	<color name="outlineVariant">
-		<light>0xDEC1B1FF</light>
-		<dark>0x574236FF</dark>
-	</color>
-	<color name="scrim">
-		<light>0x000000FF</light>
-		<dark>0x000000FF</dark>
-	</color>
-	<color name="inverseSurface">
-		<light>0x3A2E27FF</light>
-		<dark>0xF4DED3FF</dark>
-	</color>
-	<color name="inverseOnSurface">
-		<light>0xFFEDE5FF</light>
-		<dark>0x3A2E27FF</dark>
+		<light>#3A1500</light>
+		<dark>#3A1500</dark>
 	</color>
 	<color name="inversePrimary">
-		<light>0xFFB689FF</light>
-		<dark>0x984800FF</dark>
+		<light>#FE7600</light>
+		<dark>#9C4600</dark>
 	</color>
-	<color name="surfaceDim">
-		<light>0xEBD6CBFF</light>
-		<dark>0x1B110BFF</dark>
+	<color name="secondary">
+		<light>#775848</light>
+		<dark>#E6BEAA</dark>
+	</color>
+	<color name="onSecondary">
+		<light>#FFF7F5</light>
+		<dark>#553A2B</dark>
+	</color>
+	<color name="secondaryContainer">
+		<light>#FFDBC9</light>
+		<dark>#4F3527</dark>
+	</color>
+	<color name="onSecondaryContainer">
+		<light>#684B3C</light>
+		<dark>#DEB7A3</dark>
+	</color>
+	<color name="tertiary">
+		<light>#6D5E26</light>
+		<dark>#FFF6E1</dark>
+	</color>
+	<color name="onTertiary">
+		<light>#FFF8ED</light>
+		<dark>#6B5D25</dark>
+	</color>
+	<color name="tertiaryContainer">
+		<light>#FCE7A1</light>
+		<dark>#FCE7A1</dark>
+	</color>
+	<color name="onTertiaryContainer">
+		<light>#62541D</light>
+		<dark>#62541D</dark>
+	</color>
+	<color name="background">
+		<light>#FFF8F6</light>
+		<dark>#130D09</dark>
+	</color>
+	<color name="onBackground">
+		<light>#3D2F28</light>
+		<dark>#F8E1D6</dark>
+	</color>
+	<color name="surface">
+		<light>#FFF8F6</light>
+		<dark>#130D09</dark>
+	</color>
+	<color name="onSurface">
+		<light>#3D2F28</light>
+		<dark>#F8E1D6</dark>
+	</color>
+	<color name="surfaceVariant">
+		<light>#F5DED3</light>
+		<dark>#30231C</dark>
+	</color>
+	<color name="onSurfaceVariant">
+		<light>#6C5C53</light>
+		<dark>#BCA79D</dark>
+	</color>
+	<color name="surfaceTint">
+		<light>#9C4600</light>
+		<dark>#FFB68D</dark>
+	</color>
+	<color name="inverseSurface">
+		<light>#130D09</light>
+		<dark>#FFF8F6</dark>
+	</color>
+	<color name="inverseOnSurface">
+		<light>#A79A95</light>
+		<dark>#5D534E</dark>
+	</color>
+	<color name="error">
+		<light>#A73B21</light>
+		<dark>#F97758</dark>
+	</color>
+	<color name="onError">
+		<light>#FFF7F6</light>
+		<dark>#450900</dark>
+	</color>
+	<color name="errorContainer">
+		<light>#FD795A</light>
+		<dark>#85230A</dark>
+	</color>
+	<color name="onErrorContainer">
+		<light>#6E1400</light>
+		<dark>#FF9B82</dark>
+	</color>
+	<color name="outline">
+		<light>#89776E</light>
+		<dark>#847269</dark>
+	</color>
+	<color name="outlineVariant">
+		<light>#C3AEA4</light>
+		<dark>#54453D</dark>
+	</color>
+	<color name="scrim">
+		<light>#000000</light>
+		<dark>#000000</dark>
 	</color>
 	<color name="surfaceBright">
-		<light>0xFFF8F5FF</light>
-		<dark>0x43362FFF</dark>
-	</color>
-	<color name="surfaceContainerLowest">
-		<light>0xFFFFFFFF</light>
-		<dark>0x150C07FF</dark>
-	</color>
-	<color name="surfaceContainerLow">
-		<light>0xFFF1EAFF</light>
-		<dark>0x241913FF</dark>
+		<light>#FFF8F6</light>
+		<dark>#372922</dark>
 	</color>
 	<color name="surfaceContainer">
-		<light>0xFFEADFFF</light>
-		<dark>0x281D17FF</dark>
+		<light>#FEEAE1</light>
+		<dark>#211712</dark>
 	</color>
 	<color name="surfaceContainerHigh">
-		<light>0xF9E4D9FF</light>
-		<dark>0x332720FF</dark>
+		<light>#F9E4DA</light>
+		<dark>#281D17</dark>
 	</color>
 	<color name="surfaceContainerHighest">
-		<light>0xF4DED3FF</light>
-		<dark>0x3F322BFF</dark>
+		<light>#F5DED3</light>
+		<dark>#30231C</dark>
 	</color>
+	<color name="surfaceContainerLow">
+		<light>#FFF1EB</light>
+		<dark>#1A120D</dark>
+	</color>
+	<color name="surfaceContainerLowest">
+		<light>#FFFFFF</light>
+		<dark>#000000</dark>
+	</color>
+	<color name="surfaceDim">
+		<light>#ECD5CB</light>
+		<dark>#130D09</dark>
+	</color>
+
+	<color name="primaryFixed">#FE7600</color>
+	<color name="primaryFixedDim">#EA6C00</color>
+	<color name="onPrimaryFixed">#000000</color>
+	<color name="onPrimaryFixedVariant">#491D00</color>
+	<color name="secondaryFixed">#FFDBC9</color>
+	<color name="secondaryFixedDim">#F4CCB8</color>
+	<color name="onSecondaryFixed">#54392B</color>
+	<color name="onSecondaryFixedVariant">#735545</color>
+	<color name="tertiaryFixed">#FCE7A1</color>
+	<color name="tertiaryFixedDim">#EED995</color>
+	<color name="onTertiaryFixed">#4F420C</color>
+	<color name="onTertiaryFixedVariant">#6D5E26</color>
 </resources>
