@@ -1,6 +1,5 @@
 package presentation.features.edit.models
 
-import kotlinx.datetime.Clock
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -9,6 +8,7 @@ import platform.Foundation.NSCalendar
 import platform.Foundation.NSDate
 import presentation.utils.fromPlatformLocalDate
 import presentation.utils.fromPlatformLocalTime
+import kotlin.time.Clock
 
 public fun initialEditUiState(): EditUiState = EditUiState()
 

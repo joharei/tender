@@ -7,6 +7,10 @@ public fun getCarcassLabelDailyDegrees(dailyDegrees: String, percent: Int): Stri
 	return MR.strings.carcass_label_daily_degrees.format(dailyDegrees, percent)
 }
 
+public fun getCarcassLabelDone(doneDailyDegrees: Int): StringDesc {
+	return MR.strings.carcass_label_done.format(doneDailyDegrees)
+}
+
 private fun Duration.format(): StringDesc {
 	toComponents { days, hours, _, _, _ ->
 		return MR.strings.carcass_duration_short_format.format(days, hours)

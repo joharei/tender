@@ -1,7 +1,7 @@
 package db.mappers
 
 import domain.models.LatLon
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 import db.Carcass as DbCarcass
 import domain.models.Carcass as DomainCarcass
 

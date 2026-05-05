@@ -7,11 +7,11 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
+import kotlin.time.Clock
 import kotlin.time.Duration
+import kotlin.time.Instant
 
 public class GetCarcassesUseCase(
 	private val repo: CarcassRepository,
@@ -40,7 +40,7 @@ public class GetCarcassesUseCase(
 									durationSinceStarted = (it.doneDate ?: Clock.System.now()) - it.startDate,
 									status = if (estimate != null) {
 										CarcassWithEstimate.Status.InProgress(
-											durationUntilDueEstimate = if (estimate.dueEstimate == Instant.Companion.DISTANT_FUTURE) Duration.INFINITE else estimate.dueEstimate - Clock.System.now(),
+											durationUntilDueEstimate = if (estimate.dueEstimate == Instant.DISTANT_FUTURE) Duration.INFINITE else estimate.dueEstimate - Clock.System.now(),
 											progress = (now.epochSeconds - it.startDate.epochSeconds).toFloat() / (estimate.dueEstimate.epochSeconds - it.startDate.epochSeconds),
 											currentDailyDegrees = estimate.currentDailyDegrees,
 										)

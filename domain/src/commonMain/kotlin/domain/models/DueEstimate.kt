@@ -1,6 +1,6 @@
 package domain.models
 
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 
 public data class DueEstimate(
 	val currentDailyDegrees: Double,

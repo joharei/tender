@@ -3,7 +3,7 @@ package domain.repositories
 import domain.models.Carcass
 import domain.models.LatLon
 import kotlinx.coroutines.flow.Flow
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 
 public interface CarcassRepository {
 	public fun carcasses(): Flow<List<Carcass>>

@@ -2,7 +2,6 @@ package presentation.utils
 
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.convert
-import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalTime
 import kotlinx.datetime.toKotlinInstant
@@ -10,6 +9,7 @@ import kotlinx.datetime.toNSDate
 import kotlinx.datetime.toNSDateComponents
 import platform.Foundation.NSDate
 import platform.Foundation.NSDateComponents
+import kotlin.time.Instant
 
 internal actual typealias PlatformInstant = NSDate
 
@@ -23,8 +23,8 @@ internal actual typealias PlatformLocalDate = NSDateComponents
 internal actual fun PlatformLocalDate.fromPlatformLocalDate(): LocalDate {
 	return LocalDate(
 		year = year.toInt(),
-		monthNumber = month.toInt(),
-		dayOfMonth = day.toInt(),
+		month = month.toInt(),
+		day = day.toInt(),
 	)
 }
 

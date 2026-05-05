@@ -1,7 +1,7 @@
 package domain.models
 
-import kotlinx.datetime.Instant
 import kotlin.time.Duration
+import kotlin.time.Instant
 
 public data class CarcassWithEstimate(
 	val id: Long,
