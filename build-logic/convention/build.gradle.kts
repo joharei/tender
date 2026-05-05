@@ -36,7 +36,6 @@ gradlePlugin {
 
 kotlin {
     val jvmVersion = libs.versions.jvmTarget.get()
-    jvmToolchain(jvmVersion.toInt())
     compilerOptions {
         freeCompilerArgs.addAll(
             "-Xjdk-release=$jvmVersion",
