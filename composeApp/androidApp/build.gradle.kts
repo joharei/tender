@@ -2,9 +2,26 @@ plugins {
 	alias(libs.plugins.android.application)
 	alias(libs.plugins.compose.multiplatform)
 	alias(libs.plugins.compose.compiler)
+	alias(libs.plugins.app.versioning)
 }
 
-// TODO: set up signing
+appVersioning {
+	overrideVersionName { gitTag, _, variantInfo ->
+		val version = gitTag.rawTagName.drop(1)
+		if (gitTag.commitsSinceLatestTag == 0) {
+			version
+		} else {
+			"$version-${gitTag.commitsSinceLatestTag}-${gitTag.commitHash}"
+		}.let {
+			if (variantInfo.isDebugBuild) "$it-DEBUG" else it
+		}
+	}
+	overrideVersionCode { gitTag, _, _ ->
+		val majorMultiplier = 10000000
+		val version = gitTag.rawTagName.drop(1).toInt()
+		version * majorMultiplier + gitTag.commitsSinceLatestTag
+	}
+}
 
 android {
 	namespace = "app.reitan.tender"
