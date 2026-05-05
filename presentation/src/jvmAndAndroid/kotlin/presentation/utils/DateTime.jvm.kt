@@ -1,8 +1,8 @@
 package presentation.utils
 
-import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalTime
+import kotlin.time.Instant
 
 internal actual typealias PlatformInstant = Instant
 
