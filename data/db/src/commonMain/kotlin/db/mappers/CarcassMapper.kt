@@ -1,0 +1,18 @@
+package db.mappers
+
+import domain.models.LatLon
+import kotlin.time.Instant
+import db.Carcass as DbCarcass
+import domain.models.Carcass as DomainCarcass
+
+internal class CarcassMapper {
+	operator fun invoke(dbModel: DbCarcass): DomainCarcass = DomainCarcass(
+		id = dbModel.carcass_id,
+		name = dbModel.name,
+		startDate = Instant.parse(dbModel.start_date),
+		location = LatLon(lat = dbModel.location_lat, lon = dbModel.location_lon),
+		dailyDegreesGoal = dbModel.daily_degrees_goal,
+		doneDate = dbModel.done_date?.let { Instant.parse(it) },
+		doneDailyDegrees = dbModel.done_daily_degrees,
+	)
+}

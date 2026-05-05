@@ -1,7 +1,0 @@
-settings:
-  jvm:
-    release: 21
-  android:
-    minSdk: 21
-    targetSdk: 35
-    compileSdk: 35

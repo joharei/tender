@@ -32,7 +32,7 @@ struct CarcassesView: View {
 		let carcassesTitle = MR.strings().carcasses_title.desc().localized()
 
 		NavigationStack {
-			List(uiState.carcasses, id: \.id) { carcass in
+			List(uiState.activeCarcasses, id: \.id) { carcass in
 				CarcassView(uiState: carcass) {
 					onDeleteClick(carcass.id)
 				}
@@ -80,7 +80,7 @@ enum SheetState: Hashable, Identifiable {
 
 extension CarcassesUiState {
 	static var initial: Self {
-		return Self(carcasses: [], loading: true)
+		return Self(activeCarcasses: [], doneCarcasses: [], loading: true)
 	}
 
 	static var sample: Self {
@@ -90,13 +90,16 @@ extension CarcassesUiState {
 				id: Int64(index),
 				name: "Carcass \(index)",
 				durationSinceStarted: Int64(10),
-				durationUntilDueEstimate: Int64(10),
-				progress: 0.5,
-				current24HoursDegrees: 20
+				status: CarcassUiStateStatusInProgress(
+                    durationUntilDueEstimate: Int64(10),
+                    progress: 0.5,
+                    currentDailyDegrees: 20
+                )
 			))
 		}
 		return Self(
-			carcasses: carcasses,
+			activeCarcasses: carcasses,
+            doneCarcasses: carcasses,
 			loading: false
 		)
 	}
