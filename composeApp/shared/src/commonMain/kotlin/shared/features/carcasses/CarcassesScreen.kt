@@ -41,7 +41,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.icerock.moko.resources.compose.stringResource
-import kotlinx.datetime.Instant
 import presentation.features.carcasses.models.CarcassUiState
 import presentation.features.carcasses.models.CarcassesUiState
 import resources.MR
@@ -49,6 +48,7 @@ import shared.features.carcasses.components.Carcass
 import shared.ui.theme.AppTheme
 import shared.utils.plus
 import kotlin.time.Duration.Companion.days
+import kotlin.time.Instant
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
