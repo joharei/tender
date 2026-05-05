@@ -31,7 +31,34 @@ android {
 	}
 
 	signingConfigs {
+		create("sharedDebug") {
+			storeFile = project.file("debug.jks")
+			storePassword = "android"
+			keyAlias = "androiddebugkey"
+			keyPassword = "android"
+		}
+	}
 
+	buildTypes {
+		release {
+			isMinifyEnabled = true
+			isShrinkResources = true
+			proguardFiles(
+				getDefaultProguardFile("proguard-android-optimize.txt"),
+				"proguard-rules.pro",
+			)
+
+			if (System.getenv("CI") == null) {
+				signingConfig = getByName("debug").signingConfig
+			}
+		}
+
+		debug {
+			applicationIdSuffix = ".debug"
+			versionNameSuffix = "-DEBUG"
+			isDebuggable = true
+			signingConfig = signingConfigs.getByName("sharedDebug")
+		}
 	}
 
 	dependencies {

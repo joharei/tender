@@ -28,6 +28,7 @@ jobs:
         run: ./gradlew bundleRelease --no-daemon
 
       - name: Sign AAB
+        id: sign
         uses: ilharp/sign-android-release@v2
         with:
           releaseDir: composeApp/androidApp/build/outputs/bundle/release
@@ -41,10 +42,10 @@ jobs:
         with:
           serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
           packageName: app.reitan.tender
-          releaseFiles: composeApp/androidApp/build/outputs/bundle/release/androidApp-release.aab
+          releaseFiles: ${{ steps.sign.outputs.signedFile }}
           mappingFile: composeApp/androidApp/build/outputs/mapping/release/mapping.txt
-          debugSymbols: composeApp/androidApp/build/intermediates/merged_native_libs/release/out/lib
-          track: internal
+          debugSymbols: composeApp/androidApp/build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib
+          tracks: internal
           status: draft
 
       - name: Create GitHub release
