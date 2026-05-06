@@ -30,6 +30,25 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v6
 
+      - name: Create next tag
+        id: next_tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          latest_tag="$(git tag --list 'v[0-9]*' --sort=-v:refname | head -n 1)"
+          if [[ -z "${latest_tag}" ]]; then
+            latest_tag="v0"
+          fi
+          current_number="${latest_tag#v}"
+          next_number=$((current_number + 1))
+          new_tag="v${next_number}"
+          echo "new_tag=${new_tag}" >> "${GITHUB_OUTPUT}"
+          
+          if [ $(git tag -l ${new_tag}) ]; then
+            git tag --delete ${new_tag}
+          fi
+          git tag ${new_tag}
+
       - name: Build release bundle
         run: ./gradlew bundleRelease --no-daemon
 
@@ -53,6 +72,9 @@ jobs:
           debugSymbols: composeApp/androidApp/build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib
           tracks: internal
           status: draft
+
+      - name: Push tag
+        run: git push --follow-tags
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v3
