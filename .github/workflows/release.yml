@@ -3,6 +3,9 @@ name: Build and publish a new release
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build
