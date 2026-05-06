@@ -42,6 +42,7 @@ jobs:
           current_number="${latest_tag#v}"
           next_number=$((current_number + 1))
           new_tag="v${next_number}"
+          echo "new_tag=${new_tag}"
           echo "new_tag=${new_tag}" >> "${GITHUB_OUTPUT}"
           
           if [ $(git tag -l ${new_tag}) ]; then
