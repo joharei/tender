@@ -3,20 +3,26 @@ name: Build and publish a new release
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v6
         name: Checkout
+        with:
+          fetch-depth: 0
+          fetch-tags: true
 
       - name: Set up JDK
         uses: actions/setup-java@v5
         with:
           distribution: 'zulu'
-          java-version: '21'
+          java-version: '25'
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v4
@@ -24,10 +30,31 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v6
 
+      - name: Create next tag
+        id: next_tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          latest_tag="$(git tag --list 'v[0-9]*' --sort=-v:refname | head -n 1)"
+          if [[ -z "${latest_tag}" ]]; then
+            latest_tag="v0"
+          fi
+          current_number="${latest_tag#v}"
+          next_number=$((current_number + 1))
+          new_tag="v${next_number}"
+          echo "new_tag=${new_tag}"
+          echo "new_tag=${new_tag}" >> "${GITHUB_OUTPUT}"
+          
+          if [ $(git tag -l ${new_tag}) ]; then
+            git tag --delete ${new_tag}
+          fi
+          git tag ${new_tag}
+
       - name: Build release bundle
         run: ./gradlew bundleRelease --no-daemon
 
       - name: Sign AAB
+        id: sign
         uses: ilharp/sign-android-release@v2
         with:
           releaseDir: composeApp/androidApp/build/outputs/bundle/release
@@ -35,18 +62,20 @@ jobs:
           keyAlias: ${{ secrets.ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
-          buildToolsVersion: 36.0.0
 
       - name: Deploy to Play Store
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
           packageName: app.reitan.tender
-          releaseFiles: composeApp/androidApp/build/outputs/bundle/release/androidApp-release.aab
+          releaseFiles: ${{ steps.sign.outputs.signedFile }}
           mappingFile: composeApp/androidApp/build/outputs/mapping/release/mapping.txt
-          debugSymbols: composeApp/androidApp/build/intermediates/merged_native_libs/release/out/lib
-          track: internal
+          debugSymbols: composeApp/androidApp/build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib
+          tracks: internal
           status: draft
+
+      - name: Push tag
+        run: git push --follow-tags
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v3
