@@ -1,0 +1,57 @@
+config:
+  validation: true
+  warningsAsErrors: false
+
+console-reports:
+  active: true
+  exclude:
+    - 'TxtOutputReport'
+    # - 'XmlOutputReport'
+    - 'HtmlOutputReport'
+    - 'MdOutputReport'
+    - 'SarifOutputReport'
+
+ktlint:
+  active: true
+  autoCorrect: true
+  excludes: [ '**/build/**' ]
+  Indentation:
+    indentStyle: tab
+  MaximumLineLength:
+    active: true
+    maxLineLength: 150
+    ignoreBackTickedIdentifier: true
+  TrailingCommaOnCallSite:
+    active: true
+    useTrailingCommaOnCallSite: true
+  TrailingCommaOnDeclarationSite:
+    active: true
+    useTrailingCommaOnDeclarationSite: true
+
+potential-bugs:
+  IgnoredReturnValue:
+    excludes: [ '**/test/**', '**/androidDeviceTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidHostTest/**', '**/androidInstrumentedTest/**', '**/jsTest/**', '**/iosTest/**' ]
+
+complexity:
+  active: false
+
+style:
+  MagicNumber:
+    active: false
+  MaxLineLength:
+    maxLineLength: 150
+    ignoreAnnotated: [ "Test" ]
+  DestructuringDeclarationWithTooManyEntries:
+    active: false
+  ForbiddenComment:
+    allowedPatterns: 'TODO'
+
+naming:
+  FunctionNaming:
+    active: true
+    excludes: [ '**/test/**', '**/androidDeviceTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidHostTest/**', '**/androidInstrumentedTest/**', '**/jsTest/**', '**/iosTest/**' ]
+    functionPattern: '[a-z][a-zA-Z0-9]*'
+    excludeClassPattern: '$^'
+    ignoreAnnotated:
+      - 'Composable'
+      - 'Test'
