@@ -30,6 +30,7 @@ koin-plugin = "0.6.2"
 mockative = "3.2.3"
 skie = "0.10.11"
 moko = "0.26.3"
+detekt = "2.0.0-alpha.3"
 
 # Testing
 mokkery = "3.3.0"
@@ -47,6 +48,7 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
 skie = { id = "co.touchlab.skie", version.ref = "skie" }
 moko = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko" }
+detekt = { id = "dev.detekt", version.ref = "detekt" }
 
 # Testing
 mokkery = { id = "dev.mokkery", version.ref = "mokkery" }
@@ -65,6 +67,8 @@ kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", ve
 mokkery-gradlePlugin = { module = "dev.mokkery:mokkery-gradle", version.ref = "mokkery" }
 allopen-gradlePlugin = { module = "org.jetbrains.kotlin.plugin.allopen:org.jetbrains.kotlin.plugin.allopen.gradle.plugin", version.ref = "kotlin" }
 koin-gradlePlugin = { module = "io.insert-koin:koin-compiler-gradle-plugin", version.ref = "koin-plugin" }
+
+detekt-ktlint = { module = "dev.detekt:detekt-rules-ktlint-wrapper", version.ref = "detekt" }
 
 compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "compose-multiplatform" }
 compose-ui-tooling = { module = "org.jetbrains.compose.ui:ui-tooling", version.ref = "compose-multiplatform" }
